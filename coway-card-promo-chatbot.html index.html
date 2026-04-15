@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CardMate - 코웨이 제휴카드 Q&A</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+@font-face{font-family:'Netmarble';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleL.woff') format('woff');font-weight:300;font-display:swap}
+@font-face{font-family:'Netmarble';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleM.woff') format('woff');font-weight:500;font-display:swap}
+@font-face{font-family:'Netmarble';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');font-weight:700;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Netmarble','Pretendard',system-ui,-apple-system,sans-serif;background:#E8EBF0;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:12px}
+.wrap{width:100%;max-width:540px;height:94vh;max-height:860px;display:flex;flex-direction:column;background:#F5F6F8;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.12)}
+@media(min-width:768px){.wrap{max-width:620px}}
+@media(min-width:1024px){.wrap{max-width:680px}}
+.hdr{background:linear-gradient(135deg,#0A1E33 0%,#143D6B 50%,#1B5A8A 100%);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:relative;overflow:hidden}
+.hdr::after{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,0.03);border-radius:50%}
+.hdr-l{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.hdr-ico{width:42px;height:42px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.hdr-ico svg{width:22px;height:22px}
+.hdr-brand{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.5px}
+.hdr-brand span{font-weight:400;opacity:0.5;font-size:13px;margin-left:6px}
+.hdr-sub{color:rgba(255,255,255,0.45);font-size:10.5px;margin-top:2px;letter-spacing:0.2px}
+.hdr-rst{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);font-size:11.5px;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:500;transition:all .2s;position:relative;z-index:1}
+.hdr-rst:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25)}
+.hdr-rst:focus{outline:2px solid rgba(255,255,255,0.4);outline-offset:2px}
+.body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
+.body::-webkit-scrollbar{width:4px}
+.body::-webkit-scrollbar-thumb{background:#C4C8CF;border-radius:4px}
+.row{display:flex;gap:10px;align-items:flex-start;animation:fadeUp .35s ease}
+.row.usr{justify-content:flex-end}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.av{width:34px;height:34px;background:linear-gradient(135deg,#143D6B,#1B5A8A);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.av svg{width:18px;height:18px}
+.bub{max-width:82%;padding:12px 16px;font-size:13.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.bub.bot{background:#fff;color:#1F2937;border-radius:4px 16px 16px 16px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.bub.usr{background:linear-gradient(135deg,#143D6B,#1B5A8A);color:#fff;border-radius:16px 16px 4px 16px;box-shadow:0 2px 8px rgba(20,61,107,0.25)}
+.cats{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 0 44px}
+.cat{background:#fff;border:1px solid #D8DCE3;border-radius:20px;padding:8px 16px;font-size:12.5px;color:#143D6B;cursor:pointer;font-weight:600;font-family:inherit;display:flex;align-items:center;gap:6px;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.cat:hover{background:#143D6B;color:#fff;border-color:#143D6B;box-shadow:0 3px 12px rgba(20,61,107,0.2);transform:translateY(-1px)}
+.cat:focus{outline:2px solid #143D6B;outline-offset:2px}
+.cat.promo-badge::after{content:'4월';font-size:9px;background:#E8F4FD;color:#14608A;padding:1px 5px;border-radius:6px;font-weight:700;margin-left:2px}
+.cat.tool-btn{background:#EDF1F7;border-color:#C4CFE0}
+.cat.tool-btn:hover{background:#143D6B;color:#fff;border-color:#14408A}
+.subs{display:flex;flex-direction:column;gap:6px;margin:8px 0 0 44px}
+.sq{background:#fff;border:1px solid #DEE2E8;border-radius:11px;padding:10px 14px;font-size:12.5px;color:#14608A;cursor:pointer;text-align:left;font-weight:500;font-family:inherit;transition:all .2s;line-height:1.4;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+.sq:hover{background:#EDF4FB;border-color:#14608A;transform:translateX(3px)}
+.sq:focus{outline:2px solid #14608A;outline-offset:2px}
+.inp-area{padding:12px 16px 16px;background:#fff;border-top:1px solid #E8EAEF;flex-shrink:0}
+.inp-row{display:flex;gap:8px;align-items:center}
+.inp-row input{flex:1;padding:12px 16px;border-radius:12px;border:1px solid #D8DCE3;font-size:13.5px;background:#F7F8FA;color:#1F2937;outline:none;font-family:inherit;transition:all .2s}
+.inp-row input:focus{border-color:#14608A;box-shadow:0 0 0 3px rgba(20,96,138,0.1)}
+.inp-row input::placeholder{color:#9CA3AF}
+.send-btn{width:42px;height:42px;border-radius:12px;border:none;background:#14608A;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.send-btn:hover{background:#0A1E33;transform:scale(1.04)}
+.send-btn:focus{outline:2px solid #14608A;outline-offset:2px}
+.send-btn svg{width:18px;height:18px}
+.ft{text-align:center;font-size:10.5px;color:#9CA3AF;padding:6px 0 2px;letter-spacing:-0.1px}
+.card-info{background:#F0F4FA;border:1px solid #D4DBE8;border-radius:12px;padding:14px 16px;margin-top:6px;font-size:12.5px;line-height:1.7;color:#1F2937}
+.card-info .ci-ttl{font-weight:600;color:#14608A;margin-bottom:8px;font-size:13.5px;display:flex;align-items:center;gap:6px}
+.card-info .ci-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #E4E8EF}
+.card-info .ci-row:last-child{border-bottom:none}
+.card-info .ci-label{color:#5A6070;font-size:12.5px}
+.card-info .ci-val{font-weight:600;color:#14608A;font-size:13px}
+.card-info .ci-note{color:#6B7280;font-size:11.5px;margin-top:10px;line-height:1.6}
+.notice{background:#FFFBF0;border:1px solid #F0DBA8;border-left:3px solid #D4A017;border-radius:0 8px 8px 0;padding:10px 14px;margin:8px 0 0 44px;font-size:11.5px;color:#7A6520;line-height:1.55}
+a{color:#14608A;text-decoration:underline}
+a:focus{outline:2px solid #14608A;outline-offset:2px}
+.section-label{width:100%;font-size:11px;color:#6B7280;font-weight:600;margin-bottom:3px;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:6px}
+.section-label::after{content:'';flex:1;height:1px;background:#E4E8EF}
+.typing{display:flex;gap:4px;padding:8px 0 4px 44px}
+.typing span{width:6px;height:6px;background:#B0B8C4;border-radius:50%;animation:blink 1.4s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+</style>
+</head>
+<body>
+<div class="wrap" role="application" aria-label="CardMate 제휴카드 프로모션 Q&A 챗봇">
+  <div class="hdr">
+    <div class="hdr-l">
+      <div class="hdr-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="3"/>
+          <line x1="2" y1="10" x2="22" y2="10"/>
+          <line x1="6" y1="15" x2="10" y2="15"/>
+          <line x1="14" y1="15" x2="16" y2="15"/>
+        </svg>
+      </div>
+      <div>
+        <div class="hdr-brand">CardMate<span>by coway</span></div>
+        <div class="hdr-sub">내부 상담원 참고용 · 2026년 4월 프로모션</div>
+      </div>
+    </div>
+    <button class="hdr-rst" onclick="resetChat()" aria-label="새 상담 시작">새 상담</button>
+  </div>
+  <div class="body" id="chatBody" role="log" aria-live="polite" aria-label="대화 내용"></div>
+  <div class="inp-area">
+    <div class="inp-row">
+      <input type="text" id="chatInput" aria-label="질문 입력" onkeydown="if(event.key==='Enter')doSend()">
+      <button class="send-btn" onclick="doSend()" aria-label="전송">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="19" x2="12" y2="5"/>
+          <polyline points="5 12 12 5 19 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="ft">내부 상담원 전용 · 고객에게 직접 공유하지 마세요</div>
+  </div>
+</div>
+
+<script>
+var CARDS = {
+  "shinhan": {
+    name: "코웨이 신한카드", icon: "&#128308;", phone: "1833-6013",
+    link: "https://shcard.io/coway",
+    period: "2026년 4월 1일 ~ 4월 30일", duration: "60개월",
+    maxDiscount: "최대 3만원 청구할인",
+    target: "2025년 10월 ~ 2026년 3월까지 모든 신한카드(신용카드) 청구 및 사용 이력이 없는 고객",
+    tiers: [
+      {spend:"30만원 이상", base:"13,000원", promo:"+10,000원", total:"23,000원"},
+      {spend:"70만원 이상", base:"17,000원", promo:"+6,000원", total:"23,000원"},
+      {spend:"150만원 이상", base:"30,000원", promo:"-", total:"30,000원"}
+    ],
+    notes: [
+      "코웨이 렌탈/멤버십료 자동이체 필수 (자동이체 결제가 아닌 경우 카드 할인 및 프로모션 적용 불가)",
+      "카드 발급 후 2026년 5월부터 카드 이용 실적 충족 필수 및 자동 납부 매출 발생 필수",
+      "2026년 4월부터 60개월간 (카드 유효기간까지) 최대 추가 1만원 청구할인 혜택 제공",
+      "신한카드 신규 발급 고객 대상 (재발급, 기보유 회원 해지 후 1년 미경과 회원 제외, 브랜드 변경/후불 교통 카드 변경도 제외)",
+      "본인 카드 발급 시 적용 (가족 카드 제외)",
+      "코웨이에서 제공하는 렌탈료 면제 프로모션 고객은 면제 회차에 청구할인 혜택 미적용",
+      "코웨이 신한카드 자동이체 신청 & 제품 2대 이상 동시구매 고객에게 스타벅스 아메리카노 Tall 사이즈 쿠폰 2매 제공 (카드 발급 후 익월까지 10만원 이상 이용 시)"
+    ],
+    kw: ["신한","신한카드","shcard"]
+  },
+  "woori": {
+    name: "코웨이 ICON 우리카드", icon: "&#128309;", phone: "1800-0859", link: "",
+    period: "2026년 4월 1일 ~ 4월 30일", duration: "60개월",
+    maxDiscount: "최대 3만원 청구할인",
+    target: "2025년 10월 ~ 2026년 3월까지 모든 우리카드(신용카드) 청구 및 사용 이력이 없는 고객",
+    tiers: [
+      {spend:"30만원 이상", base:"13,000원", promo:"+9,000원", total:"22,000원"},
+      {spend:"80만원 이상", base:"17,000원", promo:"+7,000원", total:"24,000원"},
+      {spend:"150만원 이상", base:"23,000원", promo:"+7,000원", total:"30,000원"}
+    ],
+    notes: [
+      "코웨이 렌탈/멤버십료 자동이체 필수 (자동이체 결제가 아닌 경우 카드 할인 및 프로모션 적용 불가)",
+      "2026년 4월 1일 ~ 4월 30일 이내에 대상 카드 신청 접수 및 완료 기준으로 프로모션 제공",
+      "2026년 6월 말까지 렌탈료 자동이체 매입 시 추가 청구할인 최대 60회 제공 (프로모션 적용 월에 해당 전월 실적 구간 미충족 시 횟수 차감)",
+      "우리카드 신규/추가/교체 발급 고객 대상 (재발급, 기보유 회원, 해지 후 1년 미경과 회원 제외)",
+      "본인 카드 발급 시 적용 (가족 카드 제외)",
+      "코웨이에서 제공하는 렌탈료 면제 프로모션 고객은 면제 회차에 청구할인 혜택 미적용"
+    ],
+    kw: ["우리","우리카드","icon","아이콘"]
+  },
+  "kb": {
+    name: "KB국민 코웨이11 카드", icon: "&#11088;", phone: "1644-8388",
+    link: "bitly/42rA99a",
+    period: "2026년 4월 1일 ~ 4월 30일", duration: "36개월",
+    maxDiscount: "최대 1만원 추가 청구할인",
+    target: "2025년 10월 ~ 2026년 3월까지 모든 KB국민카드(KB BC카드 포함) 청구 및 사용 이력이 없는 고객",
+    tiers: [
+      {spend:"40만원 이상", base:"15,000원", promo:"+10,000원", total:"25,000원"},
+      {spend:"80만원 이상", base:"20,000원", promo:"+10,000원", total:"30,000원"}
+    ],
+    notes: [
+      "코웨이 렌탈/멤버십료 자동이체 필수 (자동이체 결제가 아닌 경우 카드 할인 및 프로모션 적용 불가)",
+      "자동납부 건당 결제 금액 전월실적 40만원 구간 15,000원 이상, 전월실적 80만원 구간 20,000원 이상 결제 시 프로모션 적용 가능",
+      "렌탈료 면제 프로모션 고객도 혜택 적용 가능 (단, 렌탈료가 발생하는 월부터 청구할인 적용되며, 2026년 8월까지 자동납부 매출 발생 시 36개월간 적용)"
+    ],
+    kw: ["국민","kb","케이비","코웨이11"]
+  },
+  "samsung": {
+    name: "코웨이 삼성카드", icon: "&#128312;", phone: "1588-7540", link: "",
+    period: "2026년 4월 1일 ~ 4월 30일", duration: "60개월",
+    maxDiscount: "1만1천원 추가 청구할인",
+    target: "2025년 10월 ~ 2026년 3월까지 모든 삼성카드(신용카드) 청구 및 사용 이력이 없는 고객",
+    tiers: [
+      {spend:"30만원 이상", base:"7,000원", promo:"+11,000원", total:"18,000원"},
+      {spend:"70만원 이상", base:"10,000원", promo:"+11,000원", total:"21,000원"},
+      {spend:"120만원 이상", base:"13,000원", promo:"+11,000원", total:"24,000원"}
+    ],
+    notes: [
+      "코웨이 렌탈/멤버십료 자동이체 필수 (자동이체 결제가 아닌 경우 카드 할인 및 프로모션 적용 불가)",
+      "카드 발급 후 2026년 5월부터 카드 이용 실적 충족 필수 및 자동 납부 매출 발생 필수",
+      "2026년 4월부터 60개월간 (카드 유효기간까지) 1만1천원 추가 청구할인 혜택 제공",
+      "삼성카드 신규 발급 고객 대상 (재발급, 기보유 회원, 해지 후 1년 미경과 회원 제외, 브랜드 변경/후불 교통 카드 변경도 제외)",
+      "본인 카드 발급 시 적용 (가족 카드 제외)",
+      "코웨이에서 제공하는 렌탈료 면제 프로모션 고객은 면제 회차에 청구할인 혜택 미적용",
+      "본인/가족 통신비, 아파트 관리비, 4대 사회보험 등 생활 요금 정기 결제 시 결제 건별 월 1천원 (최대 3천원) 추가 할인"
+    ],
+    kw: ["삼성","삼성카드"]
+  },
+  "loca": {
+    name: "코웨이 X LOCA 카드", icon: "&#128313;", phone: "1577-5208", link: "",
+    period: "2026년 4월 1일 ~ 4월 30일", duration: "60개월",
+    maxDiscount: "최대 3천원 추가 청구할인",
+    target: "2025년 10월 ~ 2026년 3월까지 모든 롯데카드(신용카드) 청구 및 사용 이력이 없는 고객",
+    tiers: [
+      {spend:"30만원 이상", base:"13,000원", promo:"+3,000원", total:"16,000원"},
+      {spend:"70만원 이상", base:"16,000원", promo:"+2,000원", total:"18,000원"},
+      {spend:"150만원 이상", base:"25,000원", promo:"-", total:"25,000원"}
+    ],
+    notes: [
+      "코웨이 렌탈/멤버십료 자동이체 필수 (자동이체 결제가 아닌 경우 카드 할인 및 프로모션 적용 불가)",
+      "카드 발급 후 2026년 5월부터 카드 이용 실적 충족 필수 및 자동 납부 매출 발생 필수",
+      "2026년 4월부터 60개월간 (카드 유효기간까지) 추가 최대 3천원 청구할인 혜택 제공",
+      "코웨이에서 제공하는 렌탈료 면제 프로모션 고객은 면제 회차에 청구할인 혜택 미적용"
+    ],
+    kw: ["로카","loca","롯데","롯데카드"]
+  },
+  "hyundai": {
+    name: "코웨이 현대카드 M Edition3", icon: "&#9899;", phone: "02-2655-5003",
+    link: "https://wd.bz/f3xh",
+    period: "2026년 4월 1일 ~ 4월 30일", duration: "36개월",
+    maxDiscount: "최대 3만원 청구할인",
+    target: "2025년 10월 ~ 2026년 3월까지 모든 현대카드(신용카드) 청구 및 사용 이력이 없는 고객",
+    tiers: [
+      {spend:"50만원 이상", base:"15,000원", promo:"+10,000원", total:"최대 25,000원"},
+      {spend:"100만원 이상", base:"20,000원", promo:"+10,000원", total:"최대 30,000원"}
+    ],
+    notes: [
+      "코웨이 렌탈/멤버십료 자동이체 필수 (자동이체 결제가 아닌 경우 카드 할인 및 프로모션 적용 불가)",
+      "해당 제휴카드로 자동이체 연결 후 카드 이용 실적 50만원/100만원 이상 충족 필수",
+      "첫 자동이체 발생 월부터 36개월간 렌탈료 지원(청구할인) 혜택 제공",
+      "코웨이에서 제공하는 렌탈료 면제 프로모션 고객은 면제 회차에 청구할인 혜택 미적용",
+      "본인 카드 발급 시 적용 (가족 카드 제외)",
+      "전월 실적에 아파트 관리비, 국세/지방세 포함",
+      "코스트코에서 카드 사용 가능",
+      "전용 페이지에서 발급 시에만 행사 적용 가능"
+    ],
+    kw: ["현대","현대카드","에디션","edition"]
+  },
+  "nh": {
+    name: "코웨이 NH농협카드", icon: "&#128994;", phone: "1644-2866",
+    link: "https://go.nhcard.com/GscljMo",
+    period: "2026년 4월 1일 ~ 4월 30일", duration: "60개월",
+    maxDiscount: "1만원 추가 캐시백",
+    target: "2025년 10월 ~ 2026년 3월까지 모든 NH농협 개인 신용카드 이용실적이 없는 고객",
+    tiers: [
+      {spend:"30만원 이상", base:"10,000원", promo:"+10,000원", total:"20,000원"},
+      {spend:"100만원 이상", base:"15,000원", promo:"+10,000원", total:"25,000원"},
+      {spend:"200만원 이상", base:"30,000원", promo:"+10,000원", total:"40,000원"}
+    ],
+    notes: [
+      "2026년 5월 내 렌탈 자동이체 매출 발생 필수 (자동이체 결제가 아닌 경우 카드 할인 및 프로모션 적용 불가)",
+      "프로모션 캐시백은 전월 실적 충족 시 제공 (단, 1회차는 미충족 시에도 제공)",
+      "2025년 12월 이후 발급된 카드만 프로모션 대상 (탈퇴 후 재발급 건도 미적용)",
+      "본인 카드 발급 시 적용 (가족 카드 제외)",
+      "코웨이에서 제공하는 렌탈료 면제 프로모션 고객은 면제 회차에 청구할인 및 프로모션 캐시백이 미적용"
+    ],
+    kw: ["농협","nh"]
+  },
+  "ibk": {
+    name: "코웨이 IBK카드", icon: "&#128311;", phone: "1566-0088 → 14#", link: "",
+    period: "상시", duration: "-", maxDiscount: "청구할인",
+    target: "일반 가입 가능",
+    tiers: [
+      {spend:"30만원 이상", base:"13,000원", promo:"-", total:"13,000원"},
+      {spend:"80만원 이상", base:"17,000원", promo:"-", total:"17,000원"}
+    ],
+    notes: ["코웨이 렌탈/멤버십료 자동이체 필수","별도 4월 프로모션 없음"],
+    kw: ["ibk","기업은행","기업"]
+  },
+  "hana": {
+    name: "마이 코웨이 하나카드", icon: "&#128310;", phone: "1588-1771", link: "",
+    period: "상시", duration: "-", maxDiscount: "청구할인",
+    target: "일반 가입 가능",
+    tiers: [
+      {spend:"30만원 이상", base:"13,000원", promo:"-", total:"13,000원"},
+      {spend:"80만원 이상", base:"18,000원", promo:"-", total:"18,000원"},
+      {spend:"150만원 이상", base:"25,000원", promo:"-", total:"25,000원"}
+    ],
+    notes: ["코웨이 렌탈/멤버십료 자동이체 필수","별도 4월 프로모션 없음"],
+    kw: ["하나","하나카드"]
+  },
+  "nhallone": {
+    name: "코웨이 NH 올원카드", icon: "&#127793;", phone: "1644-2866 → 6#", link: "",
+    period: "상시", duration: "-", maxDiscount: "청구할인",
+    target: "일반 가입 가능",
+    tiers: [
+      {spend:"30만원 이상", base:"10,000원", promo:"-", total:"10,000원"},
+      {spend:"100만원 이상", base:"15,000원", promo:"-", total:"15,000원"},
+      {spend:"200만원 이상", base:"30,000원", promo:"-", total:"30,000원"}
+    ],
+    notes: ["코웨이 렌탈/멤버십료 자동이체 필수","별도 4월 프로모션 없음"],
+    kw: ["올원","nh올원"]
+  }
+};
+
+var PROMO_CARDS = ["shinhan","woori","kb","samsung","loca","hyundai","nh"];
+var NORMAL_CARDS = ["ibk","hana","nhallone"];
+var NOT_FOUND_MSG = "제공된 자료 내에서 답변을 찾을 수 없습니다.\n\n아래 카드사를 선택하시거나, 카드사명/금액으로 다시 질문해 주세요.\n\n검색 예시:\n  카드사명: \"신한\", \"우리\", \"국민\"\n  실적별 추천: \"30만원 기준 3개\", \"200만원\"\n  최대 혜택: \"최대 혜택\", \"순위\"\n  전체 비교: \"비교\", \"전체\"";
+var GREETING = "안녕하세요! CardMate입니다.\n\n코웨이 제휴카드 프로모션 자료를 근거로 답변합니다.\n자료에 없는 내용은 안내드리지 않습니다.\n\n아래에서 카드사를 선택하거나 질문을 입력해 주세요.";
+
+var bd = document.getElementById("chatBody");
+var inp = document.getElementById("chatInput");
+
+function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function scroll(){bd.scrollTop = bd.scrollHeight;}
+
+var BOT_AV = '<div class="av"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg></div>';
+
+function addBot(text){
+  var r = document.createElement("div");
+  r.className = "row";
+  r.innerHTML = BOT_AV+'<div class="bub bot">'+esc(text)+'</div>';
+  bd.appendChild(r); scroll();
+}
+function addBotHtml(html){
+  var r = document.createElement("div");
+  r.className = "row";
+  r.innerHTML = BOT_AV+'<div class="bub bot" style="padding:10px 14px">'+html+'</div>';
+  bd.appendChild(r); scroll();
+}
+function addNotice(text){
+  var n = document.createElement("div");
+  n.className = "notice";
+  n.textContent = text;
+  bd.appendChild(n); scroll();
+}
+function addUsr(text){
+  var r = document.createElement("div");
+  r.className = "row usr";
+  r.innerHTML = '<div class="bub usr">'+esc(text)+'</div>';
+  bd.appendChild(r); scroll();
+}
+
+function showMainMenu(){
+  var w = document.createElement("div");
+  w.className = "cats";
+  var pl = document.createElement("div");
+  pl.className = "section-label";
+  pl.textContent = "4월 프로모션 카드"; w.appendChild(pl);
+  PROMO_CARDS.forEach(function(k){
+    var c = CARDS[k], b = document.createElement("button");
+    b.className = "cat promo-badge"; b.innerHTML = c.icon+" "+c.name.replace("코웨이 ","");
+    b.setAttribute("aria-label", c.name+" 상세보기");
+    b.onclick = function(){ showCardDetail(k); }; w.appendChild(b);
+  });
+  var nl = document.createElement("div");
+  nl.className = "section-label";
+  nl.style.marginTop = "10px";
+  nl.textContent = "일반 제휴카드"; w.appendChild(nl);
+  NORMAL_CARDS.forEach(function(k){
+    var c = CARDS[k], b = document.createElement("button");
+    b.className = "cat"; b.style.opacity = "0.65";
+    b.innerHTML = c.icon+" "+c.name.replace("코웨이 ","").replace("마이 코웨이 ","");
+    b.setAttribute("aria-label", c.name+" 상세보기");
+    b.onclick = function(){ showCardDetail(k); }; w.appendChild(b);
+  });
+  var tl = document.createElement("div");
+  tl.className = "section-label";
+  tl.style.marginTop = "10px";
+  tl.textContent = "빠른 검색"; w.appendChild(tl);
+  [{label:"실적별 추천", fn:function(){ addUsr("실적별 추천"); setTimeout(function(){ addBot("전월 실적 금액을 입력해 주세요.\n\n예시: \"30만원\", \"100만원\", \"200만원\"\n개수 제한: \"30만원 기준 3개\""); }, 200); }},
+   {label:"최대 혜택 순위", fn:function(){ addUsr("최대 혜택 순위"); setTimeout(function(){ showBestCards(null); }, 200); }},
+   {label:"전체 비교", fn:function(){ addUsr("전체 비교"); setTimeout(function(){ showCompare(); }, 200); }}
+  ].forEach(function(q){
+    var b = document.createElement("button");
+    b.className = "cat tool-btn";
+    b.textContent = q.label; b.onclick = q.fn; w.appendChild(b);
+  });
+  bd.appendChild(w); scroll();
+}
+
+function buildCardHtml(k){
+  var c = CARDS[k];
+  var h = '<div class="card-info"><div class="ci-ttl">'+c.icon+' '+c.name+'</div>';
+  h += '<div class="ci-row"><span class="ci-label">프로모션 기간</span><span class="ci-val">'+c.period+'</span></div>';
+  h += '<div class="ci-row"><span class="ci-label">혜택 기간</span><span class="ci-val">'+c.duration+'</span></div>';
+  h += '<div class="ci-row"><span class="ci-label">최대 혜택</span><span class="ci-val">'+c.maxDiscount+'</span></div></div>';
+  return h;
+}
+function buildTierHtml(k){
+  var c = CARDS[k];
+  var h = '<div class="card-info"><div class="ci-ttl">실적별 할인 금액</div>';
+  c.tiers.forEach(function(t){
+    h += '<div class="ci-row"><span class="ci-label">'+t.spend+'</span><span class="ci-val">'+t.total+'</span></div>';
+    if(t.promo && t.promo !== "-") h += '<div style="font-size:11px;color:#6B7280;text-align:right;margin:-2px 0 2px">(기본 '+t.base+' '+t.promo+')</div>';
+  });
+  return h+'</div>';
+}
+function buildNotesHtml(k){
+  var c = CARDS[k];
+  var h = '<div class="card-info"><div class="ci-ttl">유의사항 (자료 근거)</div><div class="ci-note">';
+  c.notes.forEach(function(n,i){ h += (i+1)+'. '+esc(n)+'<br>'; });
+  h += '</div>';
+  if(c.link) h += '<div style="margin-top:8px;font-size:12px"><b>신청 페이지:</b> <a href="'+c.link+'" target="_blank">'+c.link+'</a></div>';
+  h += '<div style="margin-top:4px;font-size:12px"><b>문의:</b> '+esc(c.phone)+'</div></div>';
+  return h;
+}
+function showCardDetail(k){
+  var c = CARDS[k];
+  addUsr(c.name);
+  setTimeout(function(){
+    addBotHtml(buildCardHtml(k));
+    addBotHtml(buildTierHtml(k));
+    addNotice("위 정보는 제공된 프로모션 자료에 근거합니다. 전월 실적 제외 조건, 연회비 등 카드 상세 내용은 해당 카드사("+c.phone+")로 문의 바랍니다.");
+    var w = document.createElement("div"); w.className = "subs";
+    [{label:"대상 고객 조건", fn:function(){ addUsr("대상 고객 조건"); setTimeout(function(){ addBot("■ 대상 고객 (자료 근거):\n"+c.target); }, 200); }},
+     {label:"유의사항 & 신청방법", fn:function(){ addUsr("유의사항 & 신청방법"); setTimeout(function(){ addBotHtml(buildNotesHtml(k)); }, 200); }},
+     {label:"다른 카드 보기", fn:function(){ addUsr("다른 카드 보기"); setTimeout(function(){ addBot("다른 카드사를 선택해 주세요."); showMainMenu(); }, 200); }}
+    ].forEach(function(it){
+      var b = document.createElement("button"); b.className = "sq";
+      b.textContent = "▸ "+it.label; b.onclick = it.fn; w.appendChild(b);
+    });
+    bd.appendChild(w); scroll();
+  }, 250);
+}
+
+function parseAmount(input){
+  var n = input.replace(/[,\s]/g,"");
+  var mMan = n.match(/(\d+)만/);
+  if(mMan) return parseInt(mMan[1]) * 10000;
+  var mWon = n.match(/(\d{5,})원?/);
+  if(mWon) return parseInt(mWon[1]);
+  var mSmall = n.match(/(\d{2,3})원/);
+  if(mSmall){ var v = parseInt(mSmall[1]); if(v >= 10 && v <= 999) return v * 10000; }
+  return null;
+}
+function parseTotalNum(str){
+  var s = str.replace(/[최대,\s원]/g,"");
+  var m = s.match(/(\d[\d,]*)/);
+  return m ? parseInt(m[1].replace(/,/g,"")) : 0;
+}
+function parseSpendNum(str){
+  var m = str.match(/(\d+)/);
+  return m ? parseInt(m[1]) * 10000 : 0;
+}
+function parseCountLimit(input){
+  var n = input.replace(/\s/g,"");
+  var m = n.match(/(\d+)개/);
+  return m ? parseInt(m[1]) : null;
+}
+function matchCard(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  for(var k in CARDS){
+    var c = CARDS[k];
+    for(var i=0;i<c.kw.length;i++){
+      if(n.indexOf(c.kw[i]) !== -1) return k;
+    }
+  }
+  return null;
+}
+function handleCompare(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  return n.indexOf("비교")!==-1||n.indexOf("전체")!==-1||n.indexOf("목록")!==-1||n.indexOf("어떤카드")!==-1||n.indexOf("뭐가있")!==-1||n.indexOf("종류")!==-1;
+}
+function handleAmountSearch(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasKw = n.indexOf("만원")!==-1||n.indexOf("만")!==-1||n.indexOf("실적")!==-1||n.indexOf("혜택")!==-1||n.indexOf("할인")!==-1||n.indexOf("최대")!==-1||n.indexOf("가장")!==-1||n.indexOf("많은")!==-1||n.indexOf("높은")!==-1||n.indexOf("좋은")!==-1||n.indexOf("추천")!==-1||n.indexOf("순서")!==-1||n.indexOf("나열")!==-1||n.indexOf("큰")!==-1||n.indexOf("기준")!==-1||n.indexOf("랭킹")!==-1||n.indexOf("순위")!==-1||n.indexOf("총")!==-1;
+  if(!hasKw) return false;
+  var amount = parseAmount(input);
+  var limit = parseCountLimit(input);
+  if(amount){ showAmountResult(amount, limit); return true; }
+  if(n.indexOf("최대")!==-1||n.indexOf("가장")!==-1||n.indexOf("높은")!==-1||n.indexOf("좋은")!==-1||n.indexOf("추천")!==-1||n.indexOf("순위")!==-1||n.indexOf("랭킹")!==-1){
+    showBestCards(limit); return true;
+  }
+  return false;
+}
+
+function showAmountResult(amount, limit){
+  var amountMan = amount / 10000;
+  var results = [];
+  for(var k in CARDS){
+    var c = CARDS[k], bestTier = null;
+    c.tiers.forEach(function(t){
+      if(amount >= parseSpendNum(t.spend)) bestTier = t;
+    });
+    if(bestTier) results.push({key:k, card:c, tier:bestTier, totalNum: parseTotalNum(bestTier.total)});
+  }
+  results.sort(function(a,b){ return b.totalNum - a.totalNum; });
+  if(results.length === 0){ addBot("제공된 자료 내에서 전월 실적 "+amountMan+"만원에 해당하는 카드를 찾을 수 없습니다."); return; }
+  var dc = limit ? Math.min(limit, results.length) : results.length;
+  var dr = results.slice(0, dc);
+  var lt = limit ? " (상위 "+dc+"개)" : "";
+  var h = '<div class="card-info"><div class="ci-ttl">전월 실적 '+amountMan+'만원 기준 혜택 순위'+lt+'</div><div style="font-size:11.5px;line-height:1.8;margin-top:6px">';
+  dr.forEach(function(r,i){
+    var isTop = i===0;
+    var bg = isTop ? "background:#1A4975;color:#fff;border-radius:6px;padding:6px 8px;margin:2px 0" : "padding:4px 0;border-bottom:1px solid #E4E8EF";
+    h += '<div style="display:flex;justify-content:space-between;align-items:center;'+bg+'"><span>'+(isTop?'&#127942; ':'')+r.card.icon+' '+r.card.name.replace("코웨이 ","")+'</span><span style="font-weight:600;'+(isTop?'':'color:#1A4975')+'">월 '+r.tier.total+'</span></div>';
+  });
+  h += '</div></div>';
+  addBotHtml(h);
+  addNotice("위 순위는 제공된 프로모션 자료의 월 할인 금액(프로모션 포함) 기준입니다. 개인별 적용 조건은 상이할 수 있으므로 상세 유의사항을 확인하세요.");
+  var top = dr[0];
+  addBot("전월 실적 "+amountMan+"만원 기준, "+top.card.name+"이(가) 월 "+top.tier.total+"으로 가장 높은 혜택입니다.\n\n상세 정보를 보시려면 아래 카드를 선택하세요.");
+  var w = document.createElement("div"); w.className = "subs";
+  dr.forEach(function(r){
+    var b = document.createElement("button"); b.className = "sq";
+    b.textContent = "▸ "+r.card.name+" 상세보기";
+    b.onclick = function(){ showCardDetail(r.key); }; w.appendChild(b);
+  });
+  bd.appendChild(w); scroll();
+}
+function showBestCards(limit){
+  var results = [];
+  PROMO_CARDS.forEach(function(k){
+    var c = CARDS[k], mt = c.tiers[c.tiers.length-1];
+    results.push({key:k, card:c, tier:mt, totalNum: parseTotalNum(mt.total), spend: mt.spend, duration: c.duration});
+  });
+  results.sort(function(a,b){ return b.totalNum - a.totalNum; });
+  var dc = limit ? Math.min(limit, results.length) : results.length;
+  var dr = results.slice(0, dc);
+  var lt = limit ? " (상위 "+dc+"개)" : "";
+  var h = '<div class="card-info"><div class="ci-ttl">&#127942; 프로모션 카드 최대 혜택 순위'+lt+'</div><div style="font-size:11.5px;line-height:1.8;margin-top:6px">';
+  dr.forEach(function(r,i){
+    var isTop = i===0;
+    var bg = isTop ? "background:#1A4975;color:#fff;border-radius:6px;padding:6px 8px;margin:2px 0" : "padding:4px 0;border-bottom:1px solid #E4E8EF";
+    h += '<div style="display:flex;justify-content:space-between;align-items:center;'+bg+'"><span>'+r.card.icon+' '+r.card.name.replace("코웨이 ","")+'</span><span style="font-weight:600;'+(isTop?'':'color:#1A4975')+'">월 '+r.tier.total+' ('+r.spend+')</span></div>';
+  });
+  h += '</div></div>';
+  addBotHtml(h);
+  addNotice("위 순위는 각 카드의 최고 실적 구간 기준 월 최대 할인 금액입니다. 제공된 자료 근거이며, 개인별 적용 조건은 상이할 수 있습니다.");
+  var top = dr[0];
+  addBot("최대 혜택 기준, "+top.card.name+"이(가) 전월 실적 "+top.spend+" 충족 시 월 "+top.tier.total+"으로 1위입니다.\n("+top.duration+"간 제공)\n\n상세 정보를 보시려면 아래 카드를 선택하세요.");
+  var w = document.createElement("div"); w.className = "subs";
+  dr.forEach(function(r){
+    var b = document.createElement("button"); b.className = "sq";
+    b.textContent = "▸ "+r.card.name+" 상세보기";
+    b.onclick = function(){ showCardDetail(r.key); }; w.appendChild(b);
+  });
+  bd.appendChild(w); scroll();
+}
+function showCompare(){
+  var h = '<div class="card-info"><div class="ci-ttl">4월 프로모션 카드 비교</div><div style="font-size:11.5px;line-height:1.7;margin-top:6px">';
+  PROMO_CARDS.forEach(function(k){
+    var c = CARDS[k], mt = c.tiers[c.tiers.length-1];
+    h += '<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #E4E8EF"><span>'+c.icon+' '+c.name.replace("코웨이 ","")+'</span><span style="font-weight:600;color:#1A4975">'+mt.total+' ('+c.duration+')</span></div>';
+  });
+  h += '</div></div>';
+  addBotHtml(h);
+  addNotice("위 비교표는 제공된 자료의 최고 실적 구간 기준입니다.");
+  addBot("각 카드의 상세 정보를 보시려면 카드사명을 선택해 주세요.");
+  showMainMenu();
+}
+
+function handleTopicSearch(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var ck = matchCard(input);
+  if(n.indexOf("면제")!==-1||n.indexOf("렌탈료면제")!==-1){
+    var msg = "■ 렌탈료 면제 프로모션 관련 (자료 근거):\n\n";
+    var found = false;
+    for(var k in CARDS){ var c = CARDS[k];
+      c.notes.forEach(function(note){
+        if(note.indexOf("면제")!==-1){ msg += "- "+c.name+": "+note+"\n\n"; found = true; }
+      });
+    }
+    if(found){ addBot(msg); return true; }
+  }
+  if(n.indexOf("가족")!==-1||n.indexOf("가족카드")!==-1||n.indexOf("본인카드")!==-1){
+    var msg2 = "■ 가족카드 관련 (자료 근거):\n\n"; var f2 = false;
+    for(var k2 in CARDS){ var c2 = CARDS[k2];
+      c2.notes.forEach(function(note){
+        if(note.indexOf("가족")!==-1){ msg2 += "- "+c2.name+": "+note+"\n"; f2 = true; }
+      });
+    }
+    if(f2){ addBot(msg2); return true; }
+  }
+  if(n.indexOf("자동이체")!==-1||n.indexOf("자동납부")!==-1){
+    var msg3 = "■ 자동이체/자동납부 관련 (자료 근거):\n\n"; var f3 = false;
+    var seen = {};
+    for(var k3 in CARDS){ var c3 = CARDS[k3];
+      c3.notes.forEach(function(note){
+        if((note.indexOf("자동이체")!==-1||note.indexOf("자동납부")!==-1||note.indexOf("자동 납부")!==-1) && !seen[c3.name+note]){
+          msg3 += "- "+c3.name+": "+note+"\n\n"; f3 = true; seen[c3.name+note] = true;
+        }
+      });
+    }
+    if(f3){ addBot(msg3); return true; }
+  }
+  if(n.indexOf("대상")!==-1||n.indexOf("신규")!==-1||n.indexOf("재발급")!==-1||n.indexOf("자격")!==-1||n.indexOf("조건")!==-1){
+    if(ck){
+      var cc = CARDS[ck];
+      var msg4 = "■ "+cc.name+" 대상 조건 (자료 근거):\n\n대상: "+cc.target+"\n\n";
+      cc.notes.forEach(function(note){
+        if(note.indexOf("발급")!==-1||note.indexOf("대상")!==-1||note.indexOf("제외")!==-1||note.indexOf("경과")!==-1) msg4 += "- "+note+"\n";
+      });
+      addBot(msg4); return true;
+    }
+  }
+  if(n.indexOf("기간")!==-1||n.indexOf("언제까지")!==-1||n.indexOf("몇개월")!==-1||n.indexOf("몇월")!==-1){
+    if(ck){
+      var cc2 = CARDS[ck];
+      addBot("■ "+cc2.name+" 기간 정보 (자료 근거):\n\n프로모션 기간: "+cc2.period+"\n혜택 제공 기간: "+cc2.duration);
+      return true;
+    }
+    var msg5 = "■ 전체 카드 프로모션 기간 (자료 근거):\n\n";
+    PROMO_CARDS.forEach(function(k){ var c = CARDS[k]; msg5 += c.name+": "+c.period+" / "+c.duration+"\n"; });
+    addBot(msg5); return true;
+  }
+  if(n.indexOf("스타벅스")!==-1||n.indexOf("쿠폰")!==-1||n.indexOf("스벅")!==-1){
+    addBot("■ 스타벅스 쿠폰 관련 (자료 근거):\n\n코웨이 신한카드 자동이체 신청 & 제품 2대 이상 동시구매 고객에게 스타벅스 아메리카노 Tall 사이즈 쿠폰 2매 제공\n(카드 발급 후 익월까지 10만원 이상 이용 시)\n\n문의: 1833-6013");
+    return true;
+  }
+  if(n.indexOf("코스트코")!==-1){
+    addBot("■ 코스트코 관련 (자료 근거):\n\n코웨이 현대카드 M Edition3: 코스트코에서 카드 사용 가능\n\n문의: 02-2655-5003");
+    return true;
+  }
+  if(n.indexOf("관리비")!==-1||n.indexOf("통신비")!==-1||n.indexOf("생활요금")!==-1){
+    var msg6 = "■ 생활요금/관리비 관련 (자료 근거):\n\n";
+    msg6 += "- 코웨이 삼성카드: 본인/가족 통신비, 아파트 관리비, 4대 사회보험 등 생활 요금 정기 결제 시 결제 건별 월 1천원 (최대 3천원) 추가 할인\n\n";
+    msg6 += "- 코웨이 현대카드 M Edition3: 전월 실적에 아파트 관리비, 국세/지방세 포함";
+    addBot(msg6); return true;
+  }
+  return false;
+}
+
+/* ============================================================
+   고급 분석: 신규 자격 판별 (날짜 계산)
+   ============================================================ */
+function handleEligibilityCheck(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasElig = n.indexOf("해지")!==-1||n.indexOf("자격")!==-1||n.indexOf("받을수있")!==-1||n.indexOf("가능할까")!==-1||n.indexOf("가능한가")!==-1||n.indexOf("대상이")!==-1||n.indexOf("신규")!==-1;
+  if(!hasElig) return false;
+  var ck = matchCard(input);
+  if(!ck) return false;
+  var c = CARDS[ck];
+  // 날짜 추출: YYYY년 MM월 형태
+  var dateMatch = input.match(/(\d{4})년\s*(\d{1,2})월/);
+  var hasCancel = n.indexOf("해지")!==-1||n.indexOf("안썼")!==-1||n.indexOf("안쓴")!==-1||n.indexOf("사용안")!==-1||n.indexOf("이력없")!==-1;
+  if(dateMatch && hasCancel){
+    var year = parseInt(dateMatch[1]);
+    var month = parseInt(dateMatch[2]);
+    // 무실적 기간: 2025.10 ~ 2026.03
+    var reqStart = new Date(2025, 9, 1); // 2025년 10월
+    var reqEnd = new Date(2026, 2, 31); // 2026년 3월
+    var cancelDate = new Date(year, month - 1, 1);
+    // 해지일이 무실적 요구 기간 시작 이후면 → 해당 기간 내 이력 있음 → 부적격
+    if(cancelDate >= reqStart){
+      addBot("■ "+c.name+" 신규 자격 판별 (자료 근거):\n\n[답변]\n대상 조건: "+c.target+"\n\n판별 결과: 부적격\n\n근거: "+year+"년 "+month+"월에 해지하셨으므로, 2025년 10월 ~ 2026년 3월 기간 내에 청구/사용 이력이 존재합니다. 해당 6개월 전체 기간 동안 이력이 없어야 신규 고객으로 인정됩니다.\n\n[문의 안내]\n정확한 이력 확인은 "+c.phone+"으로 문의 바랍니다.");
+      return true;
+    } else {
+      addBot("■ "+c.name+" 신규 자격 판별 (자료 근거):\n\n[답변]\n대상 조건: "+c.target+"\n\n판별 결과: 적격 가능성 있음\n\n근거: "+year+"년 "+month+"월 이후 사용 이력이 없다면, 2025년 10월 ~ 2026년 3월 기간 동안 무실적 조건을 충족합니다.\n\n[문의 안내]\n최종 확인은 "+c.phone+"으로 문의 바랍니다.");
+      return true;
+    }
+  }
+  return false;
+}
+
+/* ============================================================
+   고급 분석: 누적 혜택 계산 (장기 합산) - 총 혜택 기반
+   ============================================================ */
+function handleCumulativeCalc(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasCumul = (n.indexOf("총")!==-1||n.indexOf("누적")!==-1||n.indexOf("합산")!==-1||n.indexOf("차이")!==-1||n.indexOf("차액")!==-1) && (n.indexOf("개월")!==-1||n.indexOf("년")!==-1||n.indexOf("동안")!==-1);
+  if(!hasCumul) return false;
+  var matched = [];
+  for(var k in CARDS){
+    var c = CARDS[k];
+    for(var i=0;i<c.kw.length;i++){
+      if(n.indexOf(c.kw[i])!==-1){ matched.push(k); break; }
+    }
+  }
+  if(matched.length < 2) return false;
+  var monthMatch = n.match(/(\d+)개월/);
+  var yearMatch = n.match(/(\d+)년/);
+  var months = monthMatch ? parseInt(monthMatch[1]) : (yearMatch ? parseInt(yearMatch[1])*12 : null);
+  if(!months) return false;
+
+  var amount = parseAmount(input);
+  var c1 = CARDS[matched[0]], c2 = CARDS[matched[1]];
+
+  // 해당 실적 구간의 총 혜택으로 계산
+  function getMonthlyTotal(card, amt){
+    var best = null;
+    card.tiers.forEach(function(t){
+      if(!amt || amt >= parseSpendNum(t.spend)) best = t;
+    });
+    return best ? parseTotalNum(best.total) : 0;
+  }
+
+  var m1 = getMonthlyTotal(c1, amount);
+  var m2 = getMonthlyTotal(c2, amount);
+
+  // 혜택 기간 제한 확인
+  var d1 = parseInt(c1.duration) || 999;
+  var d2 = parseInt(c2.duration) || 999;
+  var eff1 = Math.min(months, d1);
+  var eff2 = Math.min(months, d2);
+
+  var total1 = m1 * eff1;
+  var total2 = m2 * eff2;
+  var diff = Math.abs(total1 - total2);
+  var winner = total1 > total2 ? c1.name : (total2 > total1 ? c2.name : "동일");
+
+  var amtLabel = amount ? (amount/10000)+"만원" : "최소 실적";
+  var msg = "■ "+months+"개월 누적 총 혜택 비교 (자료 근거):\n\n[답변]\n";
+  msg += "전월 실적: "+amtLabel+" 기준\n\n";
+  msg += c1.name+":\n  월 혜택: "+m1.toLocaleString()+"원 x "+eff1+"개월";
+  if(eff1 < months) msg += " (혜택 기간 "+c1.duration+"으로 "+months+"개월 중 "+eff1+"개월만 적용)";
+  msg += "\n  누적 합계: "+total1.toLocaleString()+"원\n\n";
+  msg += c2.name+":\n  월 혜택: "+m2.toLocaleString()+"원 x "+eff2+"개월";
+  if(eff2 < months) msg += " (혜택 기간 "+c2.duration+"으로 "+months+"개월 중 "+eff2+"개월만 적용)";
+  msg += "\n  누적 합계: "+total2.toLocaleString()+"원\n\n";
+  msg += "차액: "+diff.toLocaleString()+"원";
+  if(winner !== "동일") msg += " ("+winner+" 유리)";
+  msg += "\n\n※ 위 계산은 제공된 자료의 총 할인 금액(기본+프로모션) 기준이며, 매월 전월 실적 충족을 가정합니다.";
+  addBot(msg);
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 복합 조건 검색 (총 혜택 N원 이상 + 최저 실적)
+   ============================================================ */
+function handleComplexFilter(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  // "N원 이상이면서" + "실적 조건이 가장 낮은" 패턴
+  var hasFilter = (n.indexOf("이상이면서")!==-1||n.indexOf("이상이고")!==-1||(n.indexOf("이상")!==-1&&n.indexOf("낮은")!==-1)||(n.indexOf("이상")!==-1&&n.indexOf("적은")!==-1));
+  if(!hasFilter) return false;
+
+  var amount = parseAmount(input);
+  if(!amount) return false;
+  var amountVal = amount; // 원 단위
+
+  var results = [];
+  for(var k in CARDS){
+    var c = CARDS[k];
+    c.tiers.forEach(function(t){
+      var totalVal = parseTotalNum(t.total);
+      var spendVal = parseSpendNum(t.spend);
+      if(totalVal >= amountVal / 10000){
+        // amountVal은 원 단위로 파싱됨, totalVal은 만원 없이 숫자
+        // 재확인: parseTotalNum("23,000원") = 23000
+        if(totalVal * 1 >= amount / 1){
+          results.push({key:k, card:c, tier:t, totalVal:totalVal, spendVal:spendVal});
+        }
+      }
+    });
+  }
+
+  // 총 혜택이 threshold 이상인 것 필터
+  var threshold = amount; // 이미 원 단위
+  // parseTotalNum은 콤마 제거 후 숫자 반환 → "23,000원" → 23000
+  results = results.filter(function(r){ return r.totalVal >= threshold; });
+
+  if(results.length === 0){
+    // threshold를 만원 단위로도 시도
+    results = [];
+    for(var k2 in CARDS){
+      var c2 = CARDS[k2];
+      c2.tiers.forEach(function(t){
+        var totalVal = parseTotalNum(t.total);
+        var spendVal = parseSpendNum(t.spend);
+        if(totalVal >= threshold / 10000 * 10000){
+          results.push({key:k2, card:c2, tier:t, totalVal:totalVal, spendVal:spendVal});
+        }
+      });
+    }
+  }
+
+  if(results.length === 0){
+    addBot("제공된 자료 내에서 해당 조건에 맞는 카드를 찾을 수 없습니다.");
+    return true;
+  }
+
+  // 실적 조건이 낮은 순 정렬
+  results.sort(function(a,b){ return a.spendVal - b.spendVal; });
+  // 중복 카드 제거 (같은 카드의 다른 실적구간)
+  var seen2 = {};
+  results = results.filter(function(r){ if(seen2[r.key]) return false; seen2[r.key]=true; return true; });
+
+  var limit2 = parseCountLimit(input);
+  var dr2 = limit2 ? results.slice(0, limit2) : results;
+
+  var msg = "■ 총 혜택 "+(threshold).toLocaleString()+"원 이상 & 최저 실적 순 (자료 근거):\n\n[답변]\n";
+  dr2.forEach(function(r,i){
+    msg += (i+1)+". "+r.card.name+"\n   총 혜택: "+r.tier.total+" / 전월 실적: "+r.tier.spend+"\n";
+    if(r.tier.promo && r.tier.promo !== "-") msg += "   (기본 "+r.tier.base+" "+r.tier.promo+")\n";
+    msg += "\n";
+  });
+  addBot(msg);
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 카드 간 비교 (같은 실적에서 유불리 판단)
+   ============================================================ */
+function handleCardComparison(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  // 두 카드 비교 + 실적 언급
+  var matched2 = [];
+  for(var k in CARDS){
+    var c = CARDS[k];
+    for(var i=0;i<c.kw.length;i++){
+      if(n.indexOf(c.kw[i])!==-1){ matched2.push(k); break; }
+    }
+  }
+  if(matched2.length !== 2) return false;
+  var hasCompKw = n.indexOf("유리")!==-1||n.indexOf("좋")!==-1||n.indexOf("나은")!==-1||n.indexOf("선택")!==-1||n.indexOf("추천")!==-1||n.indexOf("비교")!==-1||n.indexOf("뭐가")!==-1||n.indexOf("어떤")!==-1||n.indexOf("어느")!==-1;
+  if(!hasCompKw && n.indexOf("차이")===-1) return false;
+  // 누적 계산은 handleCumulativeCalc에서 처리
+  if((n.indexOf("총")!==-1||n.indexOf("누적")!==-1||n.indexOf("합산")!==-1)&&(n.indexOf("개월")!==-1||n.indexOf("년")!==-1)) return false;
+
+  var amount2 = parseAmount(input);
+  var c1 = CARDS[matched2[0]], c2 = CARDS[matched2[1]];
+
+  if(amount2){
+    // 특정 실적 기준 비교
+    var t1 = null, t2 = null;
+    c1.tiers.forEach(function(t){ if(amount2 >= parseSpendNum(t.spend)) t1 = t; });
+    c2.tiers.forEach(function(t){ if(amount2 >= parseSpendNum(t.spend)) t2 = t; });
+    var amtMan = amount2 / 10000;
+
+    if(!t1 && !t2){
+      addBot("제공된 자료 기준, 전월 실적 "+amtMan+"만원 구간에서 두 카드 모두 해당하는 혜택이 없습니다.");
+      return true;
+    }
+
+    var v1 = t1 ? parseTotalNum(t1.total) : 0;
+    var v2 = t2 ? parseTotalNum(t2.total) : 0;
+    var s1 = t1 ? parseSpendNum(t1.spend) : 0;
+    var s2 = t2 ? parseSpendNum(t2.spend) : 0;
+
+    var msg = "■ "+c1.name+" vs "+c2.name+" 비교 (자료 근거):\n\n[답변]\n";
+    msg += "전월 실적 "+amtMan+"만원 기준:\n\n";
+    msg += "  "+c1.name+":\n";
+    msg += "    혜택: "+(t1?t1.total:"해당 구간 없음")+"\n";
+    msg += "    필요 실적: "+(t1?t1.spend:"없음")+" / 혜택 기간: "+c1.duration+"\n\n";
+    msg += "  "+c2.name+":\n";
+    msg += "    혜택: "+(t2?t2.total:"해당 구간 없음")+"\n";
+    msg += "    필요 실적: "+(t2?t2.spend:"없음")+" / 혜택 기간: "+c2.duration+"\n\n";
+
+    if(v1 === v2 && v1 > 0){
+      // 혜택 같으면 실적 기준 비교
+      if(s1 < s2){
+        msg += "결론: 월 혜택 금액은 동일하나, "+c1.name+"의 필요 실적("+c1.tiers[0].spend+")이 더 낮아 실적 충족이 용이합니다.";
+      } else if(s2 < s1){
+        msg += "결론: 월 혜택 금액은 동일하나, "+c2.name+"의 필요 실적("+c2.tiers[0].spend+")이 더 낮아 실적 충족이 용이합니다.";
+      } else {
+        // 혜택 기간 비교
+        var d1 = parseInt(c1.duration) || 0;
+        var d2 = parseInt(c2.duration) || 0;
+        if(d1 > d2) msg += "결론: 월 혜택과 필요 실적이 동일하나, "+c1.name+"의 혜택 기간("+c1.duration+")이 더 깁니다.";
+        else if(d2 > d1) msg += "결론: 월 혜택과 필요 실적이 동일하나, "+c2.name+"의 혜택 기간("+c2.duration+")이 더 깁니다.";
+        else msg += "결론: 월 혜택, 필요 실적, 혜택 기간이 모두 동일합니다.";
+      }
+    } else if(v1 > v2){
+      msg += "결론: "+c1.name+"이(가) 월 "+(v1-v2).toLocaleString()+"원 더 많은 혜택을 제공합니다.";
+    } else if(v2 > v1){
+      msg += "결론: "+c2.name+"이(가) 월 "+(v2-v1).toLocaleString()+"원 더 많은 혜택을 제공합니다.";
+    }
+
+    addBot(msg);
+    return true;
+  }
+
+  // 실적 미지정 시 전체 구간 비교
+  var msg2 = "■ "+c1.name+" vs "+c2.name+" 전체 비교 (자료 근거):\n\n[답변]\n";
+  msg2 += c1.name+" ("+c1.duration+"):\n";
+  c1.tiers.forEach(function(t){ msg2 += "  "+t.spend+": "+t.total+(t.promo&&t.promo!=="-"?" (기본 "+t.base+" "+t.promo+")":"")+"\n"; });
+  msg2 += "\n"+c2.name+" ("+c2.duration+"):\n";
+  c2.tiers.forEach(function(t){ msg2 += "  "+t.spend+": "+t.total+(t.promo&&t.promo!=="-"?" (기본 "+t.base+" "+t.promo+")":"")+"\n"; });
+  addBot(msg2);
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 기본 vs 프로모션 비중 (데이터 분해)
+   ============================================================ */
+function handlePromoRatioCheck(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasRatio = (n.indexOf("기본")!==-1&&n.indexOf("프로모션")!==-1)||(n.indexOf("기본할인")!==-1&&n.indexOf("추가")!==-1)||n.indexOf("비중")!==-1||(n.indexOf("프로모션")!==-1&&(n.indexOf("큰")!==-1||n.indexOf("많은")!==-1||n.indexOf("높은")!==-1||n.indexOf("더")!==-1));
+  if(!hasRatio) return false;
+
+  var results = [];
+  for(var k in CARDS){
+    var c = CARDS[k];
+    if(PROMO_CARDS.indexOf(k)===-1) continue;
+    c.tiers.forEach(function(t){
+      if(t.promo && t.promo !== "-"){
+        var baseVal = parseInt(t.base.replace(/[^0-9]/g,""));
+        var promoVal = parseInt(t.promo.replace(/[^0-9]/g,""));
+        if(promoVal > baseVal){
+          results.push({key:k, card:c, tier:t, baseVal:baseVal, promoVal:promoVal, diff: promoVal - baseVal});
+        }
+      }
+    });
+  }
+
+  if(results.length === 0){
+    addBot("제공된 자료 내에서 프로모션 추가분이 기본 할인보다 큰 카드/구간을 찾을 수 없습니다.");
+    return true;
+  }
+
+  results.sort(function(a,b){ return b.diff - a.diff; });
+
+  var msg = "■ 프로모션 추가분이 기본 할인보다 큰 카드/구간 (자료 근거):\n\n[답변]\n";
+  var seen3 = {};
+  results.forEach(function(r){
+    var label = r.card.name+" ("+r.tier.spend+")";
+    if(!seen3[label]){
+      msg += "- "+label+":\n  기본 할인: "+r.tier.base+" / 프로모션 추가: "+r.tier.promo+"\n  → 프로모션이 "+(r.diff).toLocaleString()+"원 더 큼\n\n";
+      seen3[label] = true;
+    }
+  });
+  addBot(msg);
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 최소 실적 미만 검색 (부정 조건)
+   ============================================================ */
+function handleBelowMinCheck(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasBelow = (n.indexOf("미만")!==-1||n.indexOf("이하")!==-1||n.indexOf("안써도")!==-1||n.indexOf("안쓰고")!==-1||n.indexOf("없이")!==-1||n.indexOf("없어도")!==-1) && (n.indexOf("혜택")!==-1||n.indexOf("할인")!==-1||n.indexOf("있")!==-1||n.indexOf("되")!==-1||n.indexOf("주는")!==-1);
+  if(!hasBelow) return false;
+
+  var amount3 = parseAmount(input);
+  if(!amount3) amount3 = 300000; // 기본 30만원
+
+  var amtMan = amount3 / 10000;
+  var found2 = false;
+  for(var k in CARDS){
+    var c = CARDS[k];
+    for(var i=0;i<c.tiers.length;i++){
+      if(parseSpendNum(c.tiers[i].spend) < amount3){ found2 = true; break; }
+    }
+    if(found2) break;
+  }
+
+  if(!found2){
+    addBot("■ 전월 실적 "+amtMan+"만원 미만 혜택 여부 (자료 근거):\n\n[답변]\n제공된 자료 기준, 모든 제휴카드의 최소 전월 실적 조건은 "+amtMan+"만원 이상입니다.\n\n따라서 전월 실적 "+amtMan+"만원 미만으로는 어떤 카드에서도 청구할인/프로모션 혜택을 받을 수 없습니다.");
+  } else {
+    var msg = "■ 전월 실적 "+amtMan+"만원 미만 혜택 카드 (자료 근거):\n\n[답변]\n";
+    for(var k2 in CARDS){
+      var c2 = CARDS[k2];
+      c2.tiers.forEach(function(t){
+        if(parseSpendNum(t.spend) < amount3){
+          msg += "- "+c2.name+": "+t.spend+" 시 "+t.total+"\n";
+        }
+      });
+    }
+    addBot(msg);
+  }
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 마감 기한 / 날짜 판별
+   ============================================================ */
+function handleDeadlineCheck(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasDeadline = (n.indexOf("내일")!==-1||n.indexOf("오늘")!==-1||n.indexOf("마감")!==-1||n.indexOf("마지막")!==-1||n.indexOf("신청하면")!==-1||n.indexOf("가입하면")!==-1) && (n.indexOf("가능")!==-1||n.indexOf("받을수")!==-1||n.indexOf("되")!==-1||n.indexOf("할수")!==-1||n.indexOf("프로모션")!==-1);
+  if(!hasDeadline) return false;
+
+  // 날짜 추출: N월 N일
+  var fullDate = input.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
+  var monthDay = input.match(/(\d{1,2})월\s*(\d{1,2})일/);
+
+  var checkDate = null;
+  if(n.indexOf("내일")!==-1){
+    // 입력에서 오늘 날짜 추출
+    var todayMatch = input.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
+    if(todayMatch){
+      checkDate = new Date(parseInt(todayMatch[1]), parseInt(todayMatch[2])-1, parseInt(todayMatch[3])+1);
+    }
+  } else if(n.indexOf("오늘")!==-1 && fullDate){
+    checkDate = new Date(parseInt(fullDate[1]), parseInt(fullDate[2])-1, parseInt(fullDate[3]));
+  } else if(fullDate){
+    checkDate = new Date(parseInt(fullDate[1]), parseInt(fullDate[2])-1, parseInt(fullDate[3]));
+  } else if(monthDay){
+    checkDate = new Date(2026, parseInt(monthDay[1])-1, parseInt(monthDay[2]));
+  }
+
+  if(!checkDate) return false;
+
+  var deadline = new Date(2026, 3, 30); // 4월 30일
+  var startDate = new Date(2026, 3, 1); // 4월 1일
+
+  var dateStr = checkDate.getFullYear()+"년 "+(checkDate.getMonth()+1)+"월 "+checkDate.getDate()+"일";
+
+  if(checkDate >= startDate && checkDate <= deadline){
+    addBot("■ 프로모션 신청 가능 여부 (자료 근거):\n\n[답변]\n가능합니다.\n\n근거: 4월 프로모션 행사 기간은 2026년 4월 1일 ~ 4월 30일입니다.\n"+dateStr+"은 행사 기간 내이므로 신청 가능합니다.");
+  } else if(checkDate > deadline){
+    addBot("■ 프로모션 신청 가능 여부 (자료 근거):\n\n[답변]\n불가능합니다.\n\n근거: 4월 프로모션 행사 기간은 2026년 4월 1일 ~ 4월 30일입니다.\n"+dateStr+"은 행사 기간 이후이므로 프로모션 적용이 불가합니다.");
+  } else {
+    addBot("■ 프로모션 신청 가능 여부 (자료 근거):\n\n[답변]\n아직 행사 시작 전입니다.\n\n근거: 4월 프로모션 행사 기간은 2026년 4월 1일 ~ 4월 30일입니다.\n"+dateStr+"은 행사 시작일 이전입니다.");
+  }
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 가성비(효율) 계산
+   ============================================================ */
+function handleEfficiencyCalc(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasEff = n.indexOf("가성비")!==-1||n.indexOf("효율")!==-1||(n.indexOf("1원당")!==-1)||(n.indexOf("원당")!==-1&&n.indexOf("할인")!==-1)||n.indexOf("퍼센트")!==-1||(n.indexOf("%")!==-1&&(n.indexOf("높")!==-1||n.indexOf("큰")!==-1||n.indexOf("좋")!==-1));
+  if(!hasEff) return false;
+
+  var allTiers = [];
+  for(var k in CARDS){
+    var c = CARDS[k];
+    if(PROMO_CARDS.indexOf(k)===-1 && NORMAL_CARDS.indexOf(k)===-1) continue;
+    c.tiers.forEach(function(t){
+      var totalVal = parseTotalNum(t.total);
+      var spendVal = parseSpendNum(t.spend);
+      if(spendVal > 0 && totalVal > 0){
+        var ratio = (totalVal / spendVal * 100);
+        allTiers.push({key:k, card:c, tier:t, totalVal:totalVal, spendVal:spendVal, ratio:ratio});
+      }
+    });
+  }
+
+  allTiers.sort(function(a,b){ return b.ratio - a.ratio; });
+
+  var limit = parseCountLimit(input);
+  var dc = limit ? Math.min(limit, allTiers.length) : Math.min(10, allTiers.length);
+  var dr = allTiers.slice(0, dc);
+
+  var msg = "■ 실적 대비 할인 효율(가성비) 순위 (자료 근거):\n\n[답변]\n";
+  dr.forEach(function(r,i){
+    msg += (i+1)+". "+r.card.name+" ("+r.tier.spend+" 구간)\n";
+    msg += "   할인: "+r.tier.total+" / 실적: "+r.tier.spend+"\n";
+    msg += "   효율: "+r.ratio.toFixed(1)+"%\n";
+    if(r.tier.promo && r.tier.promo !== "-") msg += "   (기본 "+r.tier.base+" "+r.tier.promo+")\n";
+    msg += "\n";
+  });
+  msg += "※ 효율(%) = 월 할인액 ÷ 전월 실적 × 100\n※ 높을수록 적은 실적으로 많은 할인을 받는 '가성비' 구간입니다.";
+  addBot(msg);
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 다중 조건 필터 (기간+프로모션금액+실적 동시)
+   ============================================================ */
+function handleMultiCondFilter(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  // "60개월이면서" + "1만원 이상" + "30만원" 같은 다중 조건
+  var hasMulti = (n.indexOf("이면서")!==-1||n.indexOf("이고")!==-1||n.indexOf("동시")!==-1) && (n.indexOf("개월")!==-1||n.indexOf("년")!==-1);
+  if(!hasMulti) return false;
+
+  // 기간 조건 추출
+  var monthMatch = n.match(/(\d+)개월/);
+  var months = monthMatch ? parseInt(monthMatch[1]) : null;
+  if(!months) return false;
+
+  // 프로모션 금액 조건 추출 (여러 금액 중 프로모션 관련)
+  var promoAmtMatch = input.match(/(?:프로모션|추가|캐시백)[\s\S]*?(\d+)[\s]*(?:만|천)/);
+  var promoThreshold = 0;
+  if(promoAmtMatch){
+    var pv = parseInt(promoAmtMatch[1]);
+    if(input.indexOf("만")!==-1 && promoAmtMatch[0].indexOf("만")!==-1) promoThreshold = pv * 10000;
+    else if(promoAmtMatch[0].indexOf("천")!==-1) promoThreshold = pv * 1000;
+    else promoThreshold = pv;
+  }
+  // 더 단순한 패턴: "1만 원 이상이고"
+  if(promoThreshold === 0){
+    var simpleMatch = input.match(/(\d+)[\s]*만[\s]*원?\s*이상/g);
+    if(simpleMatch && simpleMatch.length > 0){
+      // 가장 작은 금액을 프로모션 기준으로
+      var amounts = simpleMatch.map(function(s){ var m = s.match(/(\d+)/); return m ? parseInt(m[1]) : 0; });
+      amounts.sort(function(a,b){return a-b;});
+      // 10 이하면 만원 단위
+      if(amounts[0] <= 10) promoThreshold = amounts[0] * 10000;
+      else promoThreshold = amounts[0];
+    }
+  }
+
+  // 실적 조건 추출
+  var spendCondition = null;
+  var spendMatch = input.match(/실적[\s]*(?:조건)?[\s]*(?:이|가)?[\s]*(\d+)[\s]*만/);
+  if(spendMatch) spendCondition = parseInt(spendMatch[1]) * 10000;
+  // "전월 실적 30만원" 패턴
+  if(!spendCondition){
+    var allAmounts = [];
+    var amtMatches = input.match(/(\d+)[\s]*만[\s]*원/g);
+    if(amtMatches){
+      amtMatches.forEach(function(s){ var m = s.match(/(\d+)/); if(m) allAmounts.push(parseInt(m[1])*10000); });
+    }
+    // 30만원 이상인 것 중 실적 조건으로 추정
+    allAmounts.forEach(function(a){ if(a >= 300000 && !spendCondition) spendCondition = a; });
+  }
+
+  var results = [];
+  PROMO_CARDS.forEach(function(k){
+    var c = CARDS[k];
+    var dur = parseInt(c.duration) || 0;
+    if(dur < months) return; // 기간 조건 미충족
+
+    c.tiers.forEach(function(t){
+      if(!t.promo || t.promo === "-") return;
+      var promoVal = parseInt(t.promo.replace(/[^0-9]/g,""));
+      var spendVal = parseSpendNum(t.spend);
+
+      var passPromo = promoThreshold > 0 ? promoVal >= promoThreshold : true;
+      var passSpend = spendCondition ? spendVal <= spendCondition : true;
+
+      if(passPromo && passSpend){
+        results.push({key:k, card:c, tier:t, promoVal:promoVal, spendVal:spendVal, dur:dur});
+      }
+    });
+  });
+
+  // 중복 카드 제거 (최소 실적 구간만)
+  var seen = {};
+  results = results.filter(function(r){ if(seen[r.key]) return false; seen[r.key]=true; return true; });
+
+  if(results.length === 0){
+    addBot("제공된 자료 내에서 해당 조건을 모두 충족하는 카드를 찾을 수 없습니다.\n\n적용된 조건:\n- 혜택 기간: "+months+"개월 이상"+(promoThreshold>0?"\n- 프로모션 추가분: "+promoThreshold.toLocaleString()+"원 이상":"")+(spendCondition?"\n- 전월 실적: "+(spendCondition/10000)+"만원 이하":""));
+    return true;
+  }
+
+  var msg = "■ 다중 조건 검색 결과 (자료 근거):\n\n적용 조건:\n- 혜택 기간: "+months+"개월 이상"+(promoThreshold>0?"\n- 프로모션 추가분: "+promoThreshold.toLocaleString()+"원 이상":"")+(spendCondition?"\n- 전월 실적: "+(spendCondition/10000)+"만원 구간":"") +"\n\n[답변]\n";
+  results.forEach(function(r,i){
+    msg += (i+1)+". "+r.card.name+"\n";
+    msg += "   혜택 기간: "+r.card.duration+" / 실적: "+r.tier.spend+"\n";
+    msg += "   기본: "+r.tier.base+" + 프로모션: "+r.tier.promo+" = "+r.tier.total+"\n\n";
+  });
+  addBot(msg);
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 혜택 만료 탐색 (N개월 후 쓸모없어지는 카드)
+   ============================================================ */
+function handleExpiryCheck(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasExpiry = (n.indexOf("사라")!==-1||n.indexOf("만료")!==-1||n.indexOf("끝나")!==-1||n.indexOf("없어")!==-1||n.indexOf("쓸모")!==-1||n.indexOf("끝")!==-1) && (n.indexOf("개월")!==-1||n.indexOf("년")!==-1||n.indexOf("차")!==-1);
+  if(!hasExpiry) return false;
+
+  var monthMatch = n.match(/(\d+)[\s]*개월/);
+  var yearMatch = n.match(/(\d+)[\s]*년/);
+  var checkMonth = monthMatch ? parseInt(monthMatch[1]) : (yearMatch ? parseInt(yearMatch[1])*12 : null);
+  // "4년차" 패턴
+  var chaMatch = n.match(/(\d+)[\s]*년[\s]*차/);
+  if(chaMatch) checkMonth = (parseInt(chaMatch[1])-1)*12 + 1; // N년차 시작 = (N-1)*12+1개월
+
+  if(!checkMonth) return false;
+
+  var expired = [];
+  PROMO_CARDS.forEach(function(k){
+    var c = CARDS[k];
+    var dur = parseInt(c.duration) || 999;
+    if(dur < checkMonth){
+      expired.push({key:k, card:c, dur:dur});
+    }
+  });
+
+  if(expired.length === 0){
+    addBot("■ "+checkMonth+"개월 시점 혜택 만료 카드 (자료 근거):\n\n[답변]\n제공된 자료 기준, 모든 프로모션 카드의 혜택이 "+checkMonth+"개월 시점까지 유효합니다.\n해당 시점에 혜택이 사라지는 카드는 없습니다.");
+    return true;
+  }
+
+  var msg = "■ "+checkMonth+"개월 시점 혜택 만료 카드 (자료 근거):\n\n[답변]\n다음 카드는 프로모션 혜택 기간이 "+checkMonth+"개월 미만이므로, 해당 시점에는 프로모션 추가 혜택이 종료됩니다:\n\n";
+  expired.forEach(function(r){
+    msg += "- "+r.card.name+": 혜택 기간 "+r.card.duration+" ("+r.dur+"개월 후 프로모션 종료)\n";
+  });
+  msg += "\n※ 프로모션 종료 후에도 기본 청구할인은 카드 유효기간까지 유지될 수 있습니다. 상세 내용은 해당 카드사로 문의 바랍니다.";
+  addBot(msg);
+  return true;
+}
+
+/* ============================================================
+   고급 분석: 신규 자격 (카드사 미지정, 날짜만)
+   ============================================================ */
+function handleGeneralEligibility(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  // "마지막 결제" + 날짜 패턴
+  var hasLastUse = n.indexOf("마지막")!==-1||n.indexOf("최종")!==-1||n.indexOf("결제됐")!==-1||n.indexOf("결제했")!==-1||n.indexOf("사용했")!==-1||n.indexOf("썼")!==-1;
+  var hasNewCust = n.indexOf("신규")!==-1||n.indexOf("대상")!==-1||n.indexOf("포함")!==-1||n.indexOf("해당")!==-1||n.indexOf("자격")!==-1||n.indexOf("가능")!==-1;
+  if(!hasLastUse || !hasNewCust) return false;
+
+  var dateMatch = input.match(/(\d{4})년\s*(\d{1,2})월\s*(\d{1,2})일/);
+  var monthOnly = input.match(/(\d{4})년\s*(\d{1,2})월/);
+  if(!dateMatch && !monthOnly) return false;
+
+  var year, month, day;
+  if(dateMatch){
+    year = parseInt(dateMatch[1]);
+    month = parseInt(dateMatch[2]);
+    day = parseInt(dateMatch[3]);
+  } else {
+    year = parseInt(monthOnly[1]);
+    month = parseInt(monthOnly[2]);
+    day = 1;
+  }
+
+  // 무실적 요구 기간: 2025.10.1 ~ 2026.3.31
+  var reqStart = new Date(2025, 9, 1);
+  var lastUseDate = new Date(year, month-1, day);
+
+  var dateStr = year+"년 "+month+"월"+(dateMatch?" "+day+"일":"");
+
+  if(lastUseDate >= reqStart){
+    addBot("■ 신규 고객 자격 판별 (자료 근거):\n\n[답변]\n대상에서 제외됩니다.\n\n근거: 프로모션 대상 조건은 '2025년 10월 ~ 2026년 3월까지 청구 및 사용 이력이 없는 고객'입니다.\n\n"+dateStr+"에 마지막 결제가 발생했으므로, 2025년 10월 이후 이용 실적이 존재합니다. 따라서 6개월 무실적 조건을 충족하지 못합니다.\n\n[문의 안내]\n정확한 이력 확인은 해당 카드사로 문의 바랍니다.");
+    return true;
+  } else {
+    addBot("■ 신규 고객 자격 판별 (자료 근거):\n\n[답변]\n대상에 포함될 가능성이 있습니다.\n\n근거: 프로모션 대상 조건은 '2025년 10월 ~ 2026년 3월까지 청구 및 사용 이력이 없는 고객'입니다.\n\n"+dateStr+" 이후 사용 이력이 없다면, 2025년 10월 ~ 2026년 3월 기간 동안 무실적 조건을 충족합니다.\n\n[문의 안내]\n최종 확인은 해당 카드사로 문의 바랍니다.");
+    return true;
+  }
+}
+
+/* ============================================================
+   핵심: 특정 카드 + 구체적 수치 질문 (단답형 처리)
+   ============================================================ */
+function handleSpecificQuery(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var ck = matchCard(input);
+  if(!ck) return false;
+  var c = CARDS[ck];
+
+  // 1) 특정 카드 + 특정 실적의 기본 할인/총 혜택/프로모션 질문
+  var amount = parseAmount(input);
+  if(amount){
+    var tier = null;
+    c.tiers.forEach(function(t){ if(amount >= parseSpendNum(t.spend)) tier = t; });
+    if(!tier){
+      addBot("[답변]\n"+c.name+"는 전월 실적 "+(amount/10000)+"만원 구간에 해당하는 혜택이 없습니다.\n\n최소 전월 실적: "+c.tiers[0].spend);
+      return true;
+    }
+    // "기본" 키워드 → 기본 할인만
+    if(n.indexOf("기본")!==-1 && (n.indexOf("할인")!==-1||n.indexOf("금액")!==-1||n.indexOf("얼마")!==-1)){
+      addBot("[답변]\n"+c.name+"의 전월 실적 "+tier.spend+" 기준 기본 할인액:\n\n"+tier.base);
+      return true;
+    }
+    // "프로모션"/"추가" 키워드 → 프로모션 추가분만
+    if((n.indexOf("프로모션")!==-1||n.indexOf("추가")!==-1) && (n.indexOf("할인")!==-1||n.indexOf("금액")!==-1||n.indexOf("얼마")!==-1||n.indexOf("캐시백")!==-1)){
+      addBot("[답변]\n"+c.name+"의 전월 실적 "+tier.spend+" 기준 프로모션 추가분:\n\n"+(tier.promo && tier.promo!=="-" ? tier.promo : "해당 구간 프로모션 추가분 없음"));
+      return true;
+    }
+    // "총"/"전체"/"혜택" → 총 혜택
+    if(n.indexOf("총")!==-1||n.indexOf("전체")!==-1||n.indexOf("합계")!==-1||(n.indexOf("혜택")!==-1&&n.indexOf("순위")===-1&&n.indexOf("순서")===-1)){
+      var detail = tier.promo&&tier.promo!=="-" ? " (기본 "+tier.base+" + 프로모션 "+tier.promo+")" : "";
+      addBot("[답변]\n"+c.name+"의 전월 실적 "+tier.spend+" 기준 총 혜택:\n\n"+tier.total+detail);
+      return true;
+    }
+  }
+
+  // 2) 특정 카드의 최소 전월 실적
+  if(n.indexOf("최소")!==-1&&(n.indexOf("실적")!==-1||n.indexOf("조건")!==-1)){
+    addBot("[답변]\n"+c.name+"의 최소 전월 실적 조건:\n\n"+c.tiers[0].spend);
+    return true;
+  }
+
+  // 3) 특정 카드의 프로모션 추가 할인액 (실적 미지정)
+  if((n.indexOf("프로모션")!==-1||n.indexOf("추가")!==-1)&&(n.indexOf("할인")!==-1||n.indexOf("금액")!==-1||n.indexOf("얼마")!==-1||n.indexOf("캐시백")!==-1)){
+    var promos = [];
+    var allSame = true;
+    var firstPromo = null;
+    c.tiers.forEach(function(t){
+      if(t.promo && t.promo!=="-"){
+        promos.push(t.spend+": "+t.promo);
+        if(firstPromo===null) firstPromo = t.promo;
+        else if(t.promo !== firstPromo) allSame = false;
+      }
+    });
+    if(promos.length===0){
+      addBot("[답변]\n"+c.name+"에는 프로모션 추가 할인이 없습니다.");
+    } else if(allSame){
+      addBot("[답변]\n"+c.name+"의 프로모션 추가 할인액:\n\n"+firstPromo+" (전 구간 동일)");
+    } else {
+      addBot("[답변]\n"+c.name+"의 프로모션 추가 할인액:\n\n"+promos.join("\n"));
+    }
+    return true;
+  }
+
+  // 4) 특정 카드의 혜택 기간
+  if(n.indexOf("기간")!==-1||n.indexOf("몇개월")!==-1||n.indexOf("언제")!==-1){
+    addBot("[답변]\n"+c.name+":\n\n프로모션 신청 기간: "+c.period+"\n혜택 제공 기간: "+c.duration);
+    return true;
+  }
+
+  // 5) 특정 카드의 대상 조건
+  if(n.indexOf("대상")!==-1||n.indexOf("자격")!==-1||n.indexOf("조건")!==-1||n.indexOf("누가")!==-1){
+    var msg = "[답변]\n"+c.name+" 대상 조건:\n\n"+c.target+"\n";
+    c.notes.forEach(function(note){
+      if(note.indexOf("발급")!==-1||note.indexOf("대상")!==-1||note.indexOf("제외")!==-1||note.indexOf("경과")!==-1) msg += "\n- "+note;
+    });
+    addBot(msg);
+    return true;
+  }
+
+  // 6) 특정 카드의 신청/문의
+  if(n.indexOf("신청")!==-1||n.indexOf("문의")!==-1||n.indexOf("전화")!==-1||n.indexOf("연락")!==-1){
+    var msg2 = "[답변]\n"+c.name+" 신청 안내:\n\n문의: "+c.phone;
+    if(c.link) msg2 += "\n신청 페이지: "+c.link;
+    addBot(msg2);
+    return true;
+  }
+
+  return false;
+}
+
+/* ============================================================
+   공통 질문: 전체 프로모션 기간, 신규 기준 등
+   ============================================================ */
+function handleCommonQuestion(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+
+  // "전체 기간" / "프로모션 기간" (카드사 미지정)
+  if(!matchCard(input) && (n.indexOf("기간")!==-1||n.indexOf("언제")!==-1) && (n.indexOf("프로모션")!==-1||n.indexOf("전체")!==-1||n.indexOf("이번")!==-1||n.indexOf("4월")!==-1)){
+    addBot("[답변]\n이번 4월 프로모션 전체 기간:\n\n2026년 4월 1일 ~ 2026년 4월 30일\n\n(전 카드사 동일)");
+    return true;
+  }
+
+  // "신규 고객 기준" / "이용 실적 미보유 기간" (카드사 미지정)
+  if(!matchCard(input) && (n.indexOf("신규")!==-1||n.indexOf("무실적")!==-1||n.indexOf("미보유")!==-1) && (n.indexOf("기준")!==-1||n.indexOf("기간")!==-1||n.indexOf("조건")!==-1||n.indexOf("정의")!==-1)){
+    addBot("[답변]\n신규 고객 기준 (자료 근거):\n\n2025년 10월 ~ 2026년 3월 (6개월) 동안 해당 카드사의 신용카드 청구 및 사용 이력이 없는 고객\n\n※ 카드사별로 세부 표현이 다소 다를 수 있으나, 6개월 무실적 기간은 동일합니다.");
+    return true;
+  }
+
+  // "문서에 ~카드 정보 있어?" (존재 여부 확인) - handleMetaQuestion과 별도
+  if((n.indexOf("문서")!==-1||n.indexOf("자료")!==-1) && (n.indexOf("있")!==-1||n.indexOf("들어")!==-1||n.indexOf("포함")!==-1||n.indexOf("나와")!==-1)){
+    var ck = matchCard(input);
+    if(ck){
+      addBot("[답변]\n네, "+CARDS[ck].name+"에 대한 정보가 문서에 포함되어 있습니다.\n\n상세 정보를 보시려면 해당 카드를 선택해 주세요.");
+      var w = document.createElement("div"); w.className = "subs";
+      var b = document.createElement("button"); b.className = "sq";
+      b.textContent = "▸ "+CARDS[ck].name+" 상세보기";
+      b.onclick = function(){ showCardDetail(ck); }; w.appendChild(b);
+      bd.appendChild(w); scroll();
+      return true;
+    }
+    // 카드사명이 있지만 매칭 안 되는 경우 → 없음
+    // "하나카드" 등 일반 카드 이름이 포함된 경우 체크
+    var mentionedCards = ["비씨","씨티","카카오뱅크","토스","네이버"];
+    for(var i=0;i<mentionedCards.length;i++){
+      if(n.indexOf(mentionedCards[i])!==-1){
+        addBot("[답변]\n아니요, "+mentionedCards[i]+"에 대한 정보는 제공된 자료에 포함되어 있지 않습니다.");
+        return true;
+      }
+    }
+    // "우리 문서에 하나카드" → "우리"가 matchCard에 걸리므로 별도 처리
+    if(n.indexOf("하나카드")!==-1 && n.indexOf("문서")!==-1){
+      // "마이 코웨이 하나카드"는 있지만, "하나카드"라고만 물으면 구분 필요
+      addBot("[답변]\n네, '마이 코웨이 하나카드' 정보가 문서에 있습니다.\n단, 별도 4월 프로모션은 없으며 기본 청구할인만 제공됩니다.\n\n문의: 1588-1771");
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/* ============================================================
+   기간 필터: "N개월인 카드", "60개월 카드" 등
+   ============================================================ */
+function handleDurationFilter(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  // "36개월인 카드", "혜택 기간이 60개월", "기간이 N개월"
+  var hasDurFilter = (n.indexOf("개월인")!==-1||n.indexOf("개월인카드")!==-1||(n.indexOf("개월")!==-1&&(n.indexOf("카드는")!==-1||n.indexOf("카드가")!==-1||n.indexOf("무엇")!==-1||n.indexOf("뭐")!==-1||n.indexOf("어떤")!==-1)));
+  if(!hasDurFilter) return false;
+  // 이미 만료/사라짐 관련은 handleExpiryCheck에서 처리
+  if(n.indexOf("사라")!==-1||n.indexOf("만료")!==-1||n.indexOf("쓸모")!==-1) return false;
+
+  var monthMatch = n.match(/(\d+)[\s]*개월/);
+  if(!monthMatch) return false;
+  var targetMonths = parseInt(monthMatch[1]);
+
+  var matched = [];
+  PROMO_CARDS.forEach(function(k){
+    var c = CARDS[k];
+    var dur = parseInt(c.duration) || 0;
+    if(dur === targetMonths) matched.push(c.name);
+  });
+
+  if(matched.length === 0){
+    addBot("[답변]\n프로모션 혜택 기간이 "+targetMonths+"개월인 카드는 없습니다.\n\n현재 프로모션 카드의 혜택 기간: 36개월 또는 60개월");
+  } else {
+    addBot("[답변]\n프로모션 혜택 기간이 "+targetMonths+"개월인 카드:\n\n"+matched.join(", ")+"\n\n(총 "+matched.length+"개)");
+  }
+  return true;
+}
+function handleFactCheck(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasVerify = n.indexOf("사실이")!==-1||n.indexOf("사실인")!==-1||n.indexOf("맞아")!==-1||n.indexOf("맞는")!==-1||n.indexOf("맞나")!==-1||n.indexOf("정말")!==-1||n.indexOf("진짜")!==-1||n.indexOf("아니라면")!==-1||n.indexOf("틀린")!==-1;
+  if(!hasVerify) return false;
+
+  var ck = matchCard(input);
+  if(!ck) return false;
+  var c = CARDS[ck];
+
+  // 금액 추출
+  var claimedAmt = parseAmount(input);
+  if(!claimedAmt) return false;
+
+  // 해당 카드의 실제 최소 실적 확인
+  var minSpend = Infinity;
+  c.tiers.forEach(function(t){
+    var sv = parseSpendNum(t.spend);
+    if(sv < minSpend) minSpend = sv;
+  });
+  var minSpendMan = minSpend / 10000;
+
+  // 주장된 금액과 실제 최소 실적 비교
+  if(claimedAmt < minSpend){
+    addBot("■ "+c.name+" 정보 검증 (자료 근거):\n\n[답변]\n아니요, 사실이 아닙니다.\n\n제공된 자료 기준, "+c.name+"의 최소 전월 실적 조건은 "+minSpendMan+"만원 이상입니다.\n\n"+(claimedAmt/10000)+"만원으로는 혜택을 받을 수 없습니다.\n\n실적별 혜택:\n");
+    var sub = "";
+    c.tiers.forEach(function(t){ sub += "  "+t.spend+": "+t.total+"\n"; });
+    addBot(sub);
+    return true;
+  } else {
+    // 해당 금액에서의 실제 혜택 확인
+    var matchedTier = null;
+    c.tiers.forEach(function(t){
+      if(claimedAmt >= parseSpendNum(t.spend)) matchedTier = t;
+    });
+    if(matchedTier){
+      addBot("■ "+c.name+" 정보 검증 (자료 근거):\n\n[답변]\n네, 전월 실적 "+(claimedAmt/10000)+"만원 이상 시 혜택을 받을 수 있습니다.\n\n해당 구간 혜택: "+matchedTier.total+"\n(기본 "+matchedTier.base+(matchedTier.promo&&matchedTier.promo!=="-"?" "+matchedTier.promo:"")+")");
+      return true;
+    }
+  }
+  return false;
+}
+
+/* ============================================================
+   케이스2: 혜택 방식 차이 (청구할인 vs 캐시백)
+   ============================================================ */
+function handleBenefitTypeDiff(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasDiff = (n.indexOf("다른점")!==-1||n.indexOf("다른")!==-1||n.indexOf("차이점")!==-1||n.indexOf("차이")!==-1||n.indexOf("결정적")!==-1||n.indexOf("특이")!==-1||n.indexOf("독특")!==-1) && (n.indexOf("현금")!==-1||n.indexOf("캐시백")!==-1||n.indexOf("청구할인")!==-1||n.indexOf("방식")!==-1||n.indexOf("흐름")!==-1||n.indexOf("형태")!==-1);
+  if(!hasDiff) return false;
+
+  var ck = matchCard(input);
+
+  // NH농협 관련이면 캐시백 vs 청구할인 차이 설명
+  if(ck === "nh" || n.indexOf("농협")!==-1 || n.indexOf("nh")!==-1){
+    addBot("■ 코웨이 NH농협카드의 결정적 차이 (자료 근거):\n\n[답변]\n코웨이 NH농협카드는 다른 제휴카드들과 혜택 지급 방식이 다릅니다.\n\n- 다른 카드 (신한, 우리, 삼성, KB국민, LOCA, 현대): 청구할인\n  → 렌탈료 청구 시 할인 금액이 차감되어 청구됨\n\n- NH농협카드: 캐시백\n  → 프로모션 추가분이 캐시백으로 지급됨\n\n자료 근거: NH농협카드 프로모션 항목에 '캐시백'으로 명시되어 있으며, 다른 카드는 '청구할인'으로 명시되어 있습니다.\n\n[문의 안내]\n캐시백 지급 시점 등 상세 내용은 NH농협카드(1644-2866)로 문의 바랍니다.");
+    return true;
+  }
+
+  // 일반적 혜택 방식 비교 질문
+  if(!ck){
+    addBot("■ 제휴카드 혜택 방식 차이 (자료 근거):\n\n[답변]\n제공된 자료 기준, 대부분의 카드는 '청구할인' 방식이나, NH농협카드만 프로모션 추가분이 '캐시백' 방식입니다.\n\n청구할인 카드: 신한, 우리, 삼성, KB국민, LOCA, 현대, IBK, 하나\n캐시백 카드: NH농협\n\n[문의 안내]\n상세 지급 방식은 각 카드사로 문의 바랍니다.");
+    return true;
+  }
+  return false;
+}
+
+/* ============================================================
+   케이스3: 실적 구간 효율 분석 (실적 증가 대비 혜택 증가)
+   ============================================================ */
+function handleTierEfficiency(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var ck = matchCard(input);
+  if(!ck) return false;
+  var c = CARDS[ck];
+
+  // "실적 높였을 때", "올렸을 때", "추가로 얻는" 등
+  var hasUpgrade = n.indexOf("높")!==-1||n.indexOf("올리")!==-1||n.indexOf("올렸")!==-1||n.indexOf("늘리")!==-1||n.indexOf("늘렸")!==-1||n.indexOf("추가로")!==-1||n.indexOf("에서")!==-1;
+  var hasEval = n.indexOf("효율")!==-1||n.indexOf("가치")!==-1||n.indexOf("얼마꼴")!==-1||n.indexOf("이득")!==-1||n.indexOf("의미")!==-1||n.indexOf("꼴")!==-1;
+  if(!hasUpgrade && !hasEval) return false;
+
+  // 두 금액 추출
+  var amtMatches = input.match(/(\d+)[\s]*만[\s]*원/g);
+  if(!amtMatches || amtMatches.length < 2) return false;
+
+  var amounts = amtMatches.map(function(s){ var m = s.match(/(\d+)/); return parseInt(m[1]) * 10000; });
+  amounts.sort(function(a,b){return a-b;});
+  var lowAmt = amounts[0], highAmt = amounts[amounts.length-1];
+
+  var lowTier = null, highTier = null;
+  c.tiers.forEach(function(t){
+    if(lowAmt >= parseSpendNum(t.spend)) lowTier = t;
+  });
+  c.tiers.forEach(function(t){
+    if(highAmt >= parseSpendNum(t.spend)) highTier = t;
+  });
+
+  if(!lowTier || !highTier){
+    addBot("제공된 자료 내에서 해당 실적 구간 정보를 찾을 수 없습니다.");
+    return true;
+  }
+
+  var lowVal = parseTotalNum(lowTier.total);
+  var highVal = parseTotalNum(highTier.total);
+  var benefitDiff = highVal - lowVal;
+  var spendDiff = highAmt - lowAmt;
+  var ratio = spendDiff > 0 ? (benefitDiff / spendDiff * 100).toFixed(2) : 0;
+
+  var msg = "■ "+c.name+" 실적 구간 효율 분석 (자료 근거):\n\n[답변]\n";
+  msg += "전월 실적 "+(lowAmt/10000)+"만원 → "+(highAmt/10000)+"만원 변경 시:\n\n";
+  msg += "  기존 혜택 ("+(lowAmt/10000)+"만원): "+lowTier.total+"\n";
+  msg += "  변경 혜택 ("+(highAmt/10000)+"만원): "+highTier.total+"\n";
+  msg += "  추가 혜택: "+benefitDiff.toLocaleString()+"원/월\n";
+  msg += "  추가 실적: "+(spendDiff).toLocaleString()+"원\n";
+  msg += "  추가 효율: "+ratio+"%\n\n";
+
+  if(benefitDiff === 0){
+    msg += "결론: 실적을 높여도 혜택이 동일합니다. 실적을 높일 이유가 없습니다.";
+  } else if(parseFloat(ratio) < 1){
+    msg += "결론: 실적 "+(spendDiff).toLocaleString()+"원을 추가로 사용해야 혜택은 "+benefitDiff.toLocaleString()+"원만 증가합니다. 효율이 낮아 실적을 높이는 것이 효율적이지 않습니다.";
+  } else {
+    msg += "결론: 효율 "+ratio+"%로, 실적 증가 대비 혜택 증가가 있습니다.";
+  }
+  addBot(msg);
+  return true;
+}
+
+/* ============================================================
+   케이스4: 메타 질문 (문서에 없는 정보 확인)
+   ============================================================ */
+function handleMetaQuestion(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasMeta = (n.indexOf("문서에없")!==-1||n.indexOf("문서에나")!==-1||n.indexOf("알수없")!==-1||n.indexOf("없는정보")!==-1||n.indexOf("나와있")!==-1||n.indexOf("포함되어")!==-1) && (n.indexOf("연회비")!==-1||n.indexOf("디자인")!==-1||n.indexOf("교체")!==-1||n.indexOf("어떤정보")!==-1||n.indexOf("뭐가없")!==-1||n.indexOf("뭐야")!==-1);
+  if(!hasMeta) return false;
+
+  var docHas = "프로모션 기간, 대상 고객 조건, 전월 실적별 할인/캐시백 금액, 유의사항, 카드 신청 전화번호 및 페이지 링크";
+  var docNotHas = "연회비, 카드 디자인, 교체 발급 가능 여부, 전월 실적 제외 항목 상세, 포인트 적립률, 부가 서비스, 해외 사용 가능 여부, 결제일 선택 옵션";
+
+  addBot("■ 문서 포함/미포함 정보 (자료 근거):\n\n[답변]\n\n문서에 포함된 정보:\n"+docHas+"\n\n문서에 포함되지 않은 정보:\n"+docNotHas+"\n\n위 미포함 항목에 대해서는 제공된 자료 내에서 답변을 찾을 수 없습니다.\n\n[문의 안내]\n미포함 항목은 각 카드사 콜센터로 직접 문의 바랍니다.\n코웨이 콜센터: 1588-5200");
+  return true;
+}
+
+/* ============================================================
+   케이스5: 실적 분배 최적화 (카드 2장 조합)
+   ============================================================ */
+function handleSplitOptimization(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var hasSplit = (n.indexOf("2장")!==-1||n.indexOf("두장")!==-1||n.indexOf("2개")!==-1||n.indexOf("두개")!==-1) && (n.indexOf("분배")!==-1||n.indexOf("나눠")!==-1||n.indexOf("쪼개")!==-1||n.indexOf("조합")!==-1||n.indexOf("이득")!==-1||n.indexOf("각각")!==-1);
+  if(!hasSplit) return false;
+
+  var totalBudget = parseAmount(input);
+  if(!totalBudget) return false;
+  var budgetMan = totalBudget / 10000;
+
+  // 모든 카드의 최소 실적 구간에서 혜택 계산
+  var cardInfos = [];
+  for(var k in CARDS){
+    var c = CARDS[k];
+    if(PROMO_CARDS.indexOf(k)===-1) continue;
+    c.tiers.forEach(function(t,idx){
+      var sv = parseSpendNum(t.spend);
+      var tv = parseTotalNum(t.total);
+      if(sv <= totalBudget){
+        cardInfos.push({key:k, card:c, tier:t, spendVal:sv, totalVal:tv, tierIdx:idx});
+      }
+    });
+  }
+
+  // 2장 조합 최적화: 예산 내에서 합산 혜택 최대화
+  var bestCombo = null;
+  var bestTotal = 0;
+
+  for(var i=0;i<cardInfos.length;i++){
+    for(var j=i+1;j<cardInfos.length;j++){
+      var a = cardInfos[i], b = cardInfos[j];
+      if(a.key === b.key) continue; // 같은 카드 제외
+      if(a.spendVal + b.spendVal <= totalBudget){
+        var comboTotal = a.totalVal + b.totalVal;
+        if(comboTotal > bestTotal){
+          bestTotal = comboTotal;
+          bestCombo = {a:a, b:b};
+        }
+      }
+    }
+  }
+
+  // 단일 카드에 몰아쓰기 최대값
+  var bestSingle = null;
+  var bestSingleVal = 0;
+  for(var k2 in CARDS){
+    var c2 = CARDS[k2];
+    if(PROMO_CARDS.indexOf(k2)===-1) continue;
+    c2.tiers.forEach(function(t){
+      if(totalBudget >= parseSpendNum(t.spend)){
+        var tv2 = parseTotalNum(t.total);
+        if(tv2 > bestSingleVal){ bestSingleVal = tv2; bestSingle = {key:k2, card:c2, tier:t}; }
+      }
+    });
+  }
+
+  var msg = "■ 카드 2장 실적 분배 최적화 (자료 근거):\n\n[답변]\n총 월 사용 예산: "+budgetMan+"만원\n\n";
+
+  if(bestCombo && bestTotal > bestSingleVal){
+    msg += "▸ 최적 2장 조합:\n";
+    msg += "  1) "+bestCombo.a.card.name+": 실적 "+(bestCombo.a.spendVal/10000)+"만원 → 혜택 "+bestCombo.a.tier.total+"\n";
+    msg += "  2) "+bestCombo.b.card.name+": 실적 "+(bestCombo.b.spendVal/10000)+"만원 → 혜택 "+bestCombo.b.tier.total+"\n";
+    msg += "  합산 혜택: "+bestTotal.toLocaleString()+"원/월\n\n";
+    msg += "▸ 단일 카드 최대 (비교용):\n";
+    msg += "  "+bestSingle.card.name+": 실적 "+bestSingle.tier.spend+" → 혜택 "+bestSingle.tier.total+"\n\n";
+    msg += "결론: 2장 분배 시 월 "+(bestTotal - bestSingleVal).toLocaleString()+"원 더 이득입니다.\n";
+    msg += "예산 "+budgetMan+"만원을 쪼개 쓰는 것이 한 카드에 몰아 쓰는 것보다 유리합니다.";
+  } else if(bestSingle){
+    msg += "▸ 단일 카드 최대:\n";
+    msg += "  "+bestSingle.card.name+": 혜택 "+bestSingle.tier.total+"\n\n";
+    if(bestCombo){
+      msg += "▸ 최적 2장 조합:\n";
+      msg += "  1) "+bestCombo.a.card.name+": "+bestCombo.a.tier.total+"\n";
+      msg += "  2) "+bestCombo.b.card.name+": "+bestCombo.b.tier.total+"\n";
+      msg += "  합산: "+bestTotal.toLocaleString()+"원\n\n";
+    }
+    msg += "결론: 해당 예산에서는 단일 카드가 더 유리하거나 동일합니다.";
+  }
+
+  msg += "\n\n※ 위 분석은 프로모션 포함 총 혜택 기준이며, 각 카드의 유의사항을 별도 확인해 주세요.";
+  addBot(msg);
+  return true;
+}
+
+/* ============================================================
+   메인 전송 처리 (최종 보강)
+   ============================================================ */
+function doSend(){
+  var t = inp.value.trim();
+  if(!t) return;
+  addUsr(t); inp.value = "";
+  setTimeout(function(){
+    // === 최우선: 특정 카드 구체적 수치 질문 (단답형) ===
+    if(handleSpecificQuery(t)) return;
+    // === 공통 질문 (전체 기간, 신규 기준, 문서 존재 여부) ===
+    if(handleCommonQuestion(t)) return;
+    // === 기간 필터 (N개월인 카드) ===
+    if(handleDurationFilter(t)) return;
+    // 1. 유도 질문 반박 (사실 검증)
+    if(handleFactCheck(t)) return;
+    // 2. 메타 질문 (문서에 없는 정보)
+    if(handleMetaQuestion(t)) return;
+    // 3. 신규 자격 판별 (카드사 지정 + 날짜+해지)
+    if(handleEligibilityCheck(t)) return;
+    // 4. 신규 자격 판별 (카드사 미지정, 마지막 결제일)
+    if(handleGeneralEligibility(t)) return;
+    // 5. 마감 기한 판별
+    if(handleDeadlineCheck(t)) return;
+    // 6. 누적 혜택 계산
+    if(handleCumulativeCalc(t)) return;
+    // 7. 다중 조건 필터 (기간+프로모션+실적)
+    if(handleMultiCondFilter(t)) return;
+    // 8. 복합 조건 검색 (금액 이상 + 최저 실적)
+    if(handleComplexFilter(t)) return;
+    // 9. 실적 구간 효율 분석
+    if(handleTierEfficiency(t)) return;
+    // 10. 가성비/효율 계산
+    if(handleEfficiencyCalc(t)) return;
+    // 11. 혜택 만료 탐색
+    if(handleExpiryCheck(t)) return;
+    // 12. 혜택 방식 차이 (캐시백 vs 청구할인)
+    if(handleBenefitTypeDiff(t)) return;
+    // 13. 카드 2장 실적 분배 최적화
+    if(handleSplitOptimization(t)) return;
+    // 14. 카드 간 비교 (유불리)
+    if(handleCardComparison(t)) return;
+    // 15. 기본 vs 프로모션 비중
+    if(handlePromoRatioCheck(t)) return;
+    // 16. 최소 실적 미만 (부정 조건)
+    if(handleBelowMinCheck(t)) return;
+    // 17. 실적/금액 기반 검색
+    if(handleAmountSearch(t)) return;
+    // 18. 전체 비교
+    if(handleCompare(t)){ showCompare(); return; }
+    // 19. 주제별 검색
+    if(handleTopicSearch(t)) return;
+    // 20. 단일 카드 매칭
+    var ck = matchCard(t);
+    if(ck){ showCardDetail(ck); return; }
+    // 21. 답변 불가
+    addBot(NOT_FOUND_MSG);
+    showMainMenu();
+  }, 300);
+}
+
+function resetChat(){
+  bd.innerHTML = "";
+  addBot(GREETING);
+  addNotice("제공된 프로모션 자료만을 근거로 답변합니다. 자료에 없는 내용은 추측하지 않습니다.");
+  showMainMenu();
+}
+
+var placeholders = ["카드사명을 입력하세요 (예: 신한, 국민)","실적 금액으로 검색 (예: 100만원)","두 카드 비교 (예: 신한 우리 비교)","가성비 좋은 카드는? (예: 가성비)","프로모션 기간은? (예: 기간)"];
+var phIdx = 0;
+function rotatePh(){
+  inp.setAttribute("placeholder", placeholders[phIdx]);
+  phIdx = (phIdx+1) % placeholders.length;
+}
+rotatePh();
+setInterval(rotatePh, 4000);
+
+addBot(GREETING);
+addNotice("제공된 프로모션 자료만을 근거로 답변합니다. 자료에 없는 내용은 추측하지 않습니다.");
+showMainMenu();
+</script>
+</body>
+</html>
