@@ -18,7 +18,7 @@ body{font-family:'Netmarble','Pretendard',system-ui,-apple-system,sans-serif;bac
 .hdr-ico{width:42px;height:42px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:12px;display:flex;align-items:center;justify-content:center}
 .hdr-ico svg{width:22px;height:22px}
 .hdr-brand{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.5px}
-.hdr-brand span{font-weight:700;opacity:1;font-size:13px;margin-left:6px;color:#FFD166}
+.hdr-brand span{font-weight:700;opacity:1;font-size:13px;margin-left:6px;color:#fff}
 .hdr-sub{color:rgba(255,255,255,0.45);font-size:10.5px;margin-top:2px;letter-spacing:0.2px}
 .hdr-rst{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.85);font-size:11.5px;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:500;transition:all .2s;position:relative;z-index:1}
 .hdr-rst:hover{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.3)}
@@ -67,6 +67,11 @@ a{color:#0088B8;text-decoration:underline}
 a:focus{outline:2px solid #0088B8;outline-offset:2px}
 .section-label{width:100%;font-size:11px;color:#6B7280;font-weight:600;margin-bottom:3px;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:6px}
 .section-label::after{content:'';flex:1;height:1px;background:#C8E6F5}
+.typing-dots{display:flex;gap:5px;padding:10px 16px;background:#fff;border-radius:4px 16px 16px 16px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.typing-dots span{width:7px;height:7px;background:#0088B8;border-radius:50%;animation:dotBlink 1.4s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes dotBlink{0%,80%,100%{opacity:.2;transform:scale(0.8)}40%{opacity:1;transform:scale(1)}}
 .typing{display:flex;gap:4px;padding:8px 0 4px 44px}
 .typing span{width:6px;height:6px;background:#90C8E0;border-radius:50%;animation:blink 1.4s infinite}
 .typing span:nth-child(2){animation-delay:.2s}
@@ -93,7 +98,12 @@ a:focus{outline:2px solid #0088B8;outline-offset:2px}
         <div class="hdr-sub">상담사 전용 · 2026년 4월 프로모션</div>
       </div>
     </div>
-    <button class="hdr-rst" onclick="resetChat()" aria-label="새 상담 시작">새 상담</button>
+    <div style="display:flex;gap:6px;position:relative;z-index:1">
+      <button class="hdr-rst" onclick="exportChat()" aria-label="대화 내보내기" title="대화 내보내기">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:2px"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>저장
+      </button>
+      <button class="hdr-rst" onclick="resetChat()" aria-label="새 상담 시작">새 상담</button>
+    </div>
   </div>
   <div class="body" id="chatBody" role="log" aria-live="polite" aria-label="대화 내용"></div>
   <div class="inp-area">
@@ -302,10 +312,17 @@ function scroll(){bd.scrollTop = bd.scrollHeight;}
 
 var BOT_AV = '<div class="av"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><defs><clipPath id="ab"><rect x="2" y="10" width="20" height="10"/></clipPath></defs><rect x="2" y="4" width="20" height="16" rx="3" fill="#FFD166" clip-path="url(#ab)"/><rect x="2" y="4" width="20" height="16" rx="3" fill="none"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg></div>';
 
+/* 수치 하이라이트: 금액 패턴을 자동으로 블루 bold 처리 */
+function highlightNumbers(text){
+  return text.replace(/(\d{1,3}(,\d{3})*원)/g,'<span style="color:#0088B8;font-weight:600">$1</span>')
+             .replace(/(\d+만\s*원)/g,'<span style="color:#0088B8;font-weight:600">$1</span>')
+             .replace(/(\d+%)/g,'<span style="color:#0088B8;font-weight:600">$1</span>');
+}
+
 function addBot(text){
   var r = document.createElement("div");
   r.className = "row";
-  r.innerHTML = BOT_AV+'<div class="bub bot">'+esc(text)+'</div>';
+  r.innerHTML = BOT_AV+'<div class="bub bot">'+highlightNumbers(esc(text))+'</div>';
   bd.appendChild(r); scroll();
 }
 function addBotHtml(html){
@@ -313,6 +330,49 @@ function addBotHtml(html){
   r.className = "row";
   r.innerHTML = BOT_AV+'<div class="bub bot" style="padding:10px 14px">'+html+'</div>';
   bd.appendChild(r); scroll();
+}
+
+/* 타이핑 인디케이터 */
+function showTyping(){
+  var t = document.createElement("div");
+  t.className = "row";
+  t.id = "typingRow";
+  t.innerHTML = BOT_AV+'<div class="typing-dots"><span></span><span></span><span></span></div>';
+  bd.appendChild(t); scroll();
+}
+function hideTyping(){
+  var t = document.getElementById("typingRow");
+  if(t) t.remove();
+}
+
+/* 대화 내보내기 */
+function exportChat(){
+  var rows = bd.querySelectorAll(".row, .notice");
+  var lines = ["[CardMate 상담 내역]","날짜: "+new Date().toLocaleString("ko-KR"),"─".repeat(30),""];
+  rows.forEach(function(r){
+    if(r.classList.contains("notice")){
+      lines.push("※ "+r.textContent.trim());
+      lines.push("");
+      return;
+    }
+    if(r.classList.contains("usr")){
+      var bub = r.querySelector(".bub");
+      if(bub) lines.push("[상담사] "+bub.textContent.trim());
+    } else {
+      var bub2 = r.querySelector(".bub");
+      if(bub2) lines.push("[CardMate] "+bub2.textContent.trim());
+    }
+    lines.push("");
+  });
+  lines.push("─".repeat(30));
+  lines.push("상담사 전용 · 고객에게 직접 공유하지 마세요");
+  var blob = new Blob([lines.join("\n")], {type:"text/plain;charset=utf-8"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "CardMate_상담내역_"+new Date().toISOString().slice(0,10)+".txt";
+  a.click();
+  URL.revokeObjectURL(url);
 }
 function addNotice(text){
   var n = document.createElement("div");
@@ -1863,7 +1923,9 @@ function doSend(){
   var t = inp.value.trim();
   if(!t) return;
   addUsr(t); inp.value = "";
+  showTyping();
   setTimeout(function(){
+    hideTyping();
     // === 최우선: 특정 카드 구체적 수치 질문 (단답형) ===
     if(handleSpecificQuery(t)) return;
     // === 기간 필터 (N개월인 카드) ===
