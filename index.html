@@ -3,69 +3,108 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>코웨이 제휴카드 Q&A</title>
+<title>CardMate - 코웨이 제휴카드 Q&A</title>
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 <style>
+@font-face{font-family:'Netmarble';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleL.woff') format('woff');font-weight:300;font-display:swap}
+@font-face{font-family:'Netmarble';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleM.woff') format('woff');font-weight:500;font-display:swap}
+@font-face{font-family:'Netmarble';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');font-weight:700;font-display:swap}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:#ECEEF2;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:12px}
-.wrap{width:100%;max-width:500px;height:94vh;max-height:820px;display:flex;flex-direction:column;background:#F4F5F7;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.10)}
-.hdr{background:linear-gradient(135deg,#0F2B47 0%,#1A4975 100%);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.hdr-l{display:flex;align-items:center;gap:10px}
-.hdr-ico{width:38px;height:38px;background:rgba(255,255,255,0.12);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px}
-.hdr-ttl{color:#fff;font-size:15px;font-weight:600;letter-spacing:-0.3px}
-.hdr-sub{color:rgba(255,255,255,0.5);font-size:10.5px;margin-top:1px}
-.hdr-rst{background:rgba(255,255,255,0.10);border:none;color:rgba(255,255,255,0.85);font-size:11px;padding:5px 13px;border-radius:7px;cursor:pointer;font-family:inherit;font-weight:500;transition:background .15s}
-.hdr-rst:hover{background:rgba(255,255,255,0.18)}
-.body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+body{font-family:'Netmarble','Pretendard',system-ui,-apple-system,sans-serif;background:#E8EBF0;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:12px}
+.wrap{width:100%;max-width:540px;height:94vh;max-height:860px;display:flex;flex-direction:column;background:#F5F6F8;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.12)}
+@media(min-width:768px){.wrap{max-width:620px}}
+@media(min-width:1024px){.wrap{max-width:680px}}
+.hdr{background:linear-gradient(135deg,#0A1E33 0%,#143D6B 50%,#1B5A8A 100%);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:relative;overflow:hidden}
+.hdr::after{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,0.03);border-radius:50%}
+.hdr-l{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.hdr-ico{width:42px;height:42px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.hdr-ico svg{width:22px;height:22px}
+.hdr-brand{font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.5px}
+.hdr-brand span{font-weight:400;opacity:0.5;font-size:13px;margin-left:6px}
+.hdr-sub{color:rgba(255,255,255,0.45);font-size:10.5px;margin-top:2px;letter-spacing:0.2px}
+.hdr-rst{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);font-size:11.5px;padding:6px 14px;border-radius:8px;cursor:pointer;font-family:inherit;font-weight:500;transition:all .2s;position:relative;z-index:1}
+.hdr-rst:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.25)}
+.hdr-rst:focus{outline:2px solid rgba(255,255,255,0.4);outline-offset:2px}
+.body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth}
 .body::-webkit-scrollbar{width:4px}
 .body::-webkit-scrollbar-thumb{background:#C4C8CF;border-radius:4px}
-.row{display:flex;gap:8px;align-items:flex-start;animation:fadeUp .3s ease}
+.row{display:flex;gap:10px;align-items:flex-start;animation:fadeUp .35s ease}
 .row.usr{justify-content:flex-end}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.av{width:28px;height:28px;background:#1A4975;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:2px}
-.bub{max-width:80%;padding:10px 14px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-break:break-word}
-.bub.bot{background:#fff;color:#1a1a1a;border-radius:4px 14px 14px 14px;box-shadow:0 1px 3px rgba(0,0,0,0.05)}
-.bub.usr{background:#1A4975;color:#fff;border-radius:14px 14px 4px 14px}
-.cats{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0 36px}
-.cat{background:#fff;border:1px solid #D8DCE3;border-radius:18px;padding:7px 14px;font-size:12px;color:#1A4975;cursor:pointer;font-weight:600;font-family:inherit;display:flex;align-items:center;gap:5px;transition:all .15s;box-shadow:0 1px 2px rgba(0,0,0,0.04)}
-.cat:hover{background:#1A4975;color:#fff;border-color:#1A4975}
-.subs{display:flex;flex-direction:column;gap:5px;margin:7px 0 0 36px}
-.sq{background:#fff;border:1px solid #DEE1E7;border-radius:10px;padding:9px 13px;font-size:12.5px;color:#1A4975;cursor:pointer;text-align:left;font-weight:500;font-family:inherit;transition:all .15s;line-height:1.4;box-shadow:0 1px 2px rgba(0,0,0,0.03)}
-.sq:hover{background:#EBF0F7;border-color:#1A4975}
-.inp-area{padding:10px 14px 14px;background:#fff;border-top:1px solid #E8EAEF;flex-shrink:0}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.av{width:34px;height:34px;background:linear-gradient(135deg,#143D6B,#1B5A8A);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.av svg{width:18px;height:18px}
+.bub{max-width:82%;padding:12px 16px;font-size:13.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.bub.bot{background:#fff;color:#1F2937;border-radius:4px 16px 16px 16px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.bub.usr{background:linear-gradient(135deg,#143D6B,#1B5A8A);color:#fff;border-radius:16px 16px 4px 16px;box-shadow:0 2px 8px rgba(20,61,107,0.25)}
+.cats{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 0 44px}
+.cat{background:#fff;border:1px solid #D8DCE3;border-radius:20px;padding:8px 16px;font-size:12.5px;color:#143D6B;cursor:pointer;font-weight:600;font-family:inherit;display:flex;align-items:center;gap:6px;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.cat:hover{background:#143D6B;color:#fff;border-color:#143D6B;box-shadow:0 3px 12px rgba(20,61,107,0.2);transform:translateY(-1px)}
+.cat:focus{outline:2px solid #143D6B;outline-offset:2px}
+.cat.promo-badge::after{content:'4월';font-size:9px;background:#E8F4FD;color:#14608A;padding:1px 5px;border-radius:6px;font-weight:700;margin-left:2px}
+.cat.tool-btn{background:#EDF1F7;border-color:#C4CFE0}
+.cat.tool-btn:hover{background:#143D6B;color:#fff;border-color:#14408A}
+.subs{display:flex;flex-direction:column;gap:6px;margin:8px 0 0 44px}
+.sq{background:#fff;border:1px solid #DEE2E8;border-radius:11px;padding:10px 14px;font-size:12.5px;color:#14608A;cursor:pointer;text-align:left;font-weight:500;font-family:inherit;transition:all .2s;line-height:1.4;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
+.sq:hover{background:#EDF4FB;border-color:#14608A;transform:translateX(3px)}
+.sq:focus{outline:2px solid #14608A;outline-offset:2px}
+.inp-area{padding:12px 16px 16px;background:#fff;border-top:1px solid #E8EAEF;flex-shrink:0}
 .inp-row{display:flex;gap:8px;align-items:center}
-.inp-row input{flex:1;padding:11px 14px;border-radius:11px;border:1px solid #D8DCE3;font-size:13px;background:#F7F8FA;color:#1a1a1a;outline:none;font-family:inherit;transition:border .2s}
-.inp-row input:focus{border-color:#1A4975}
-.inp-row input::placeholder{color:#A0A5AE}
-.send{width:40px;height:40px;border-radius:11px;border:none;background:#1A4975;color:#fff;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s}
-.send.off{background:#C8CDD6;cursor:default}
-.send:not(.off):hover{background:#0F2B47}
-.ft{text-align:center;font-size:10px;color:#A0A5AE;padding:5px 0 2px;letter-spacing:-0.2px}
-.card-info{background:#F0F4FA;border:1px solid #D4DBE8;border-radius:10px;padding:12px 14px;margin-top:6px;font-size:12.5px;line-height:1.7;color:#1a1a1a}
-.card-info .ci-ttl{font-weight:600;color:#1A4975;margin-bottom:6px;font-size:13px}
-.card-info .ci-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #E4E8EF}
+.inp-row input{flex:1;padding:12px 16px;border-radius:12px;border:1px solid #D8DCE3;font-size:13.5px;background:#F7F8FA;color:#1F2937;outline:none;font-family:inherit;transition:all .2s}
+.inp-row input:focus{border-color:#14608A;box-shadow:0 0 0 3px rgba(20,96,138,0.1)}
+.inp-row input::placeholder{color:#9CA3AF}
+.send-btn{width:42px;height:42px;border-radius:12px;border:none;background:#14608A;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.send-btn:hover{background:#0A1E33;transform:scale(1.04)}
+.send-btn:focus{outline:2px solid #14608A;outline-offset:2px}
+.send-btn svg{width:18px;height:18px}
+.ft{text-align:center;font-size:10.5px;color:#9CA3AF;padding:6px 0 2px;letter-spacing:-0.1px}
+.card-info{background:#F0F4FA;border:1px solid #D4DBE8;border-radius:12px;padding:14px 16px;margin-top:6px;font-size:12.5px;line-height:1.7;color:#1F2937}
+.card-info .ci-ttl{font-weight:600;color:#14608A;margin-bottom:8px;font-size:13.5px;display:flex;align-items:center;gap:6px}
+.card-info .ci-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #E4E8EF}
 .card-info .ci-row:last-child{border-bottom:none}
-.card-info .ci-label{color:#5A6070}
-.card-info .ci-val{font-weight:600;color:#1A4975}
-.card-info .ci-note{color:#6B7280;font-size:11.5px;margin-top:8px;line-height:1.55}
-.notice{background:#FFF8E7;border:1px solid #F0DBA8;border-radius:8px;padding:8px 12px;margin:6px 0 0 36px;font-size:11px;color:#7A6520;line-height:1.5}
-a{color:#1A4975;text-decoration:underline}
+.card-info .ci-label{color:#5A6070;font-size:12.5px}
+.card-info .ci-val{font-weight:600;color:#14608A;font-size:13px}
+.card-info .ci-note{color:#6B7280;font-size:11.5px;margin-top:10px;line-height:1.6}
+.notice{background:#FFFBF0;border:1px solid #F0DBA8;border-left:3px solid #D4A017;border-radius:0 8px 8px 0;padding:10px 14px;margin:8px 0 0 44px;font-size:11.5px;color:#7A6520;line-height:1.55}
+a{color:#14608A;text-decoration:underline}
+a:focus{outline:2px solid #14608A;outline-offset:2px}
+.section-label{width:100%;font-size:11px;color:#6B7280;font-weight:600;margin-bottom:3px;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px;display:flex;align-items:center;gap:6px}
+.section-label::after{content:'';flex:1;height:1px;background:#E4E8EF}
+.typing{display:flex;gap:4px;padding:8px 0 4px 44px}
+.typing span{width:6px;height:6px;background:#B0B8C4;border-radius:50%;animation:blink 1.4s infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" role="application" aria-label="CardMate 제휴카드 프로모션 Q&A 챗봇">
   <div class="hdr">
     <div class="hdr-l">
-      <div class="hdr-ico">&#128179;</div>
-      <div><div class="hdr-ttl">제휴카드 프로모션 Q&A</div><div class="hdr-sub">내부 상담원 참고용 · 2026년 4월</div></div>
+      <div class="hdr-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="3"/>
+          <line x1="2" y1="10" x2="22" y2="10"/>
+          <line x1="6" y1="15" x2="10" y2="15"/>
+          <line x1="14" y1="15" x2="16" y2="15"/>
+        </svg>
+      </div>
+      <div>
+        <div class="hdr-brand">CardMate<span>by coway</span></div>
+        <div class="hdr-sub">내부 상담원 참고용 · 2026년 4월 프로모션</div>
+      </div>
     </div>
-    <button class="hdr-rst" onclick="resetChat()">새 상담</button>
+    <button class="hdr-rst" onclick="resetChat()" aria-label="새 상담 시작">새 상담</button>
   </div>
-  <div class="body" id="chatBody"></div>
+  <div class="body" id="chatBody" role="log" aria-live="polite" aria-label="대화 내용"></div>
   <div class="inp-area">
     <div class="inp-row">
-      <input type="text" id="chatInput" placeholder="카드사명 또는 금액 입력 (예: 신한, 200만원)" onkeydown="if(event.key==='Enter')doSend()">
-      <button class="send" id="sendBtn" onclick="doSend()">&#8593;</button>
+      <input type="text" id="chatInput" aria-label="질문 입력" onkeydown="if(event.key==='Enter')doSend()">
+      <button class="send-btn" onclick="doSend()" aria-label="전송">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="19" x2="12" y2="5"/>
+          <polyline points="5 12 12 5 19 12"/>
+        </svg>
+      </button>
     </div>
     <div class="ft">내부 상담원 전용 · 고객에게 직접 공유하지 마세요</div>
   </div>
@@ -253,7 +292,7 @@ var CARDS = {
 var PROMO_CARDS = ["shinhan","woori","kb","samsung","loca","hyundai","nh"];
 var NORMAL_CARDS = ["ibk","hana","nhallone"];
 var NOT_FOUND_MSG = "제공된 자료 내에서 답변을 찾을 수 없습니다.\n\n아래 카드사를 선택하시거나, 카드사명/금액으로 다시 질문해 주세요.\n\n검색 예시:\n  카드사명: \"신한\", \"우리\", \"국민\"\n  실적별 추천: \"30만원 기준 3개\", \"200만원\"\n  최대 혜택: \"최대 혜택\", \"순위\"\n  전체 비교: \"비교\", \"전체\"";
-var GREETING = "안녕하세요! 제휴카드 프로모션 Q&A 도우미입니다.\n\n본 챗봇은 제공된 프로모션 자료만을 근거로 답변합니다.\n자료에 없는 내용은 안내드리지 않습니다.\n\n아래에서 카드사를 선택하거나, 카드사명/금액을 입력해 주세요.";
+var GREETING = "안녕하세요! CardMate입니다.\n\n코웨이 제휴카드 프로모션 자료를 근거로 답변합니다.\n자료에 없는 내용은 안내드리지 않습니다.\n\n아래에서 카드사를 선택하거나 질문을 입력해 주세요.";
 
 var bd = document.getElementById("chatBody");
 var inp = document.getElementById("chatInput");
@@ -261,16 +300,18 @@ var inp = document.getElementById("chatInput");
 function esc(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function scroll(){bd.scrollTop = bd.scrollHeight;}
 
+var BOT_AV = '<div class="av"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg></div>';
+
 function addBot(text){
   var r = document.createElement("div");
   r.className = "row";
-  r.innerHTML = '<div class="av">&#128179;</div><div class="bub bot">'+esc(text)+'</div>';
+  r.innerHTML = BOT_AV+'<div class="bub bot">'+esc(text)+'</div>';
   bd.appendChild(r); scroll();
 }
 function addBotHtml(html){
   var r = document.createElement("div");
   r.className = "row";
-  r.innerHTML = '<div class="av">&#128179;</div><div class="bub bot" style="padding:8px 12px">'+html+'</div>';
+  r.innerHTML = BOT_AV+'<div class="bub bot" style="padding:10px 14px">'+html+'</div>';
   bd.appendChild(r); scroll();
 }
 function addNotice(text){
@@ -290,32 +331,36 @@ function showMainMenu(){
   var w = document.createElement("div");
   w.className = "cats";
   var pl = document.createElement("div");
-  pl.style.cssText = "width:100%;font-size:11px;color:#6B7280;font-weight:600;margin-bottom:2px;margin-top:4px;";
+  pl.className = "section-label";
   pl.textContent = "4월 프로모션 카드"; w.appendChild(pl);
   PROMO_CARDS.forEach(function(k){
     var c = CARDS[k], b = document.createElement("button");
-    b.className = "cat"; b.innerHTML = c.icon+" "+c.name.replace("코웨이 ","");
+    b.className = "cat promo-badge"; b.innerHTML = c.icon+" "+c.name.replace("코웨이 ","");
+    b.setAttribute("aria-label", c.name+" 상세보기");
     b.onclick = function(){ showCardDetail(k); }; w.appendChild(b);
   });
   var nl = document.createElement("div");
-  nl.style.cssText = "width:100%;font-size:11px;color:#6B7280;font-weight:600;margin-bottom:2px;margin-top:8px;";
+  nl.className = "section-label";
+  nl.style.marginTop = "10px";
   nl.textContent = "일반 제휴카드"; w.appendChild(nl);
   NORMAL_CARDS.forEach(function(k){
     var c = CARDS[k], b = document.createElement("button");
-    b.className = "cat"; b.style.opacity = "0.7";
+    b.className = "cat"; b.style.opacity = "0.65";
     b.innerHTML = c.icon+" "+c.name.replace("코웨이 ","").replace("마이 코웨이 ","");
+    b.setAttribute("aria-label", c.name+" 상세보기");
     b.onclick = function(){ showCardDetail(k); }; w.appendChild(b);
   });
   var tl = document.createElement("div");
-  tl.style.cssText = "width:100%;font-size:11px;color:#6B7280;font-weight:600;margin-bottom:2px;margin-top:8px;";
+  tl.className = "section-label";
+  tl.style.marginTop = "10px";
   tl.textContent = "빠른 검색"; w.appendChild(tl);
-  [{label:"&#128200; 실적별 추천", fn:function(){ addUsr("실적별 추천"); setTimeout(function(){ addBot("전월 실적 금액을 입력해 주세요.\n\n예시: \"30만원\", \"100만원\", \"200만원\"\n개수 제한: \"30만원 기준 3개\""); }, 200); }},
-   {label:"&#127942; 최대 혜택 순위", fn:function(){ addUsr("최대 혜택 순위"); setTimeout(function(){ showBestCards(null); }, 200); }},
-   {label:"&#128202; 전체 비교", fn:function(){ addUsr("전체 비교"); setTimeout(function(){ showCompare(); }, 200); }}
+  [{label:"실적별 추천", fn:function(){ addUsr("실적별 추천"); setTimeout(function(){ addBot("전월 실적 금액을 입력해 주세요.\n\n예시: \"30만원\", \"100만원\", \"200만원\"\n개수 제한: \"30만원 기준 3개\""); }, 200); }},
+   {label:"최대 혜택 순위", fn:function(){ addUsr("최대 혜택 순위"); setTimeout(function(){ showBestCards(null); }, 200); }},
+   {label:"전체 비교", fn:function(){ addUsr("전체 비교"); setTimeout(function(){ showCompare(); }, 200); }}
   ].forEach(function(q){
     var b = document.createElement("button");
-    b.className = "cat"; b.style.cssText = "background:#EBF0F7;border-color:#C4D0E0";
-    b.innerHTML = q.label; b.onclick = q.fn; w.appendChild(b);
+    b.className = "cat tool-btn";
+    b.textContent = q.label; b.onclick = q.fn; w.appendChild(b);
   });
   bd.appendChild(w); scroll();
 }
@@ -1149,8 +1194,175 @@ function handleGeneralEligibility(input){
 }
 
 /* ============================================================
-   케이스1: 유도 질문 반박 (잘못된 정보 검증)
+   핵심: 특정 카드 + 구체적 수치 질문 (단답형 처리)
    ============================================================ */
+function handleSpecificQuery(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  var ck = matchCard(input);
+  if(!ck) return false;
+  var c = CARDS[ck];
+
+  // 1) 특정 카드 + 특정 실적의 기본 할인/총 혜택/프로모션 질문
+  var amount = parseAmount(input);
+  if(amount){
+    var tier = null;
+    c.tiers.forEach(function(t){ if(amount >= parseSpendNum(t.spend)) tier = t; });
+    if(!tier){
+      addBot("[답변]\n"+c.name+"는 전월 실적 "+(amount/10000)+"만원 구간에 해당하는 혜택이 없습니다.\n\n최소 전월 실적: "+c.tiers[0].spend);
+      return true;
+    }
+    // "기본" 키워드 → 기본 할인만
+    if(n.indexOf("기본")!==-1 && (n.indexOf("할인")!==-1||n.indexOf("금액")!==-1||n.indexOf("얼마")!==-1)){
+      addBot("[답변]\n"+c.name+"의 전월 실적 "+tier.spend+" 기준 기본 할인액:\n\n"+tier.base);
+      return true;
+    }
+    // "프로모션"/"추가" 키워드 → 프로모션 추가분만
+    if((n.indexOf("프로모션")!==-1||n.indexOf("추가")!==-1) && (n.indexOf("할인")!==-1||n.indexOf("금액")!==-1||n.indexOf("얼마")!==-1||n.indexOf("캐시백")!==-1)){
+      addBot("[답변]\n"+c.name+"의 전월 실적 "+tier.spend+" 기준 프로모션 추가분:\n\n"+(tier.promo && tier.promo!=="-" ? tier.promo : "해당 구간 프로모션 추가분 없음"));
+      return true;
+    }
+    // "총"/"전체"/"혜택" → 총 혜택
+    if(n.indexOf("총")!==-1||n.indexOf("전체")!==-1||n.indexOf("합계")!==-1||(n.indexOf("혜택")!==-1&&n.indexOf("순위")===-1&&n.indexOf("순서")===-1)){
+      var detail = tier.promo&&tier.promo!=="-" ? " (기본 "+tier.base+" + 프로모션 "+tier.promo+")" : "";
+      addBot("[답변]\n"+c.name+"의 전월 실적 "+tier.spend+" 기준 총 혜택:\n\n"+tier.total+detail);
+      return true;
+    }
+  }
+
+  // 2) 특정 카드의 최소 전월 실적
+  if(n.indexOf("최소")!==-1&&(n.indexOf("실적")!==-1||n.indexOf("조건")!==-1)){
+    addBot("[답변]\n"+c.name+"의 최소 전월 실적 조건:\n\n"+c.tiers[0].spend);
+    return true;
+  }
+
+  // 3) 특정 카드의 프로모션 추가 할인액 (실적 미지정)
+  if((n.indexOf("프로모션")!==-1||n.indexOf("추가")!==-1)&&(n.indexOf("할인")!==-1||n.indexOf("금액")!==-1||n.indexOf("얼마")!==-1||n.indexOf("캐시백")!==-1)){
+    var promos = [];
+    var allSame = true;
+    var firstPromo = null;
+    c.tiers.forEach(function(t){
+      if(t.promo && t.promo!=="-"){
+        promos.push(t.spend+": "+t.promo);
+        if(firstPromo===null) firstPromo = t.promo;
+        else if(t.promo !== firstPromo) allSame = false;
+      }
+    });
+    if(promos.length===0){
+      addBot("[답변]\n"+c.name+"에는 프로모션 추가 할인이 없습니다.");
+    } else if(allSame){
+      addBot("[답변]\n"+c.name+"의 프로모션 추가 할인액:\n\n"+firstPromo+" (전 구간 동일)");
+    } else {
+      addBot("[답변]\n"+c.name+"의 프로모션 추가 할인액:\n\n"+promos.join("\n"));
+    }
+    return true;
+  }
+
+  // 4) 특정 카드의 혜택 기간
+  if(n.indexOf("기간")!==-1||n.indexOf("몇개월")!==-1||n.indexOf("언제")!==-1){
+    addBot("[답변]\n"+c.name+":\n\n프로모션 신청 기간: "+c.period+"\n혜택 제공 기간: "+c.duration);
+    return true;
+  }
+
+  // 5) 특정 카드의 대상 조건
+  if(n.indexOf("대상")!==-1||n.indexOf("자격")!==-1||n.indexOf("조건")!==-1||n.indexOf("누가")!==-1){
+    var msg = "[답변]\n"+c.name+" 대상 조건:\n\n"+c.target+"\n";
+    c.notes.forEach(function(note){
+      if(note.indexOf("발급")!==-1||note.indexOf("대상")!==-1||note.indexOf("제외")!==-1||note.indexOf("경과")!==-1) msg += "\n- "+note;
+    });
+    addBot(msg);
+    return true;
+  }
+
+  // 6) 특정 카드의 신청/문의
+  if(n.indexOf("신청")!==-1||n.indexOf("문의")!==-1||n.indexOf("전화")!==-1||n.indexOf("연락")!==-1){
+    var msg2 = "[답변]\n"+c.name+" 신청 안내:\n\n문의: "+c.phone;
+    if(c.link) msg2 += "\n신청 페이지: "+c.link;
+    addBot(msg2);
+    return true;
+  }
+
+  return false;
+}
+
+/* ============================================================
+   공통 질문: 전체 프로모션 기간, 신규 기준 등
+   ============================================================ */
+function handleCommonQuestion(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+
+  // "전체 기간" / "프로모션 기간" (카드사 미지정)
+  if(!matchCard(input) && (n.indexOf("기간")!==-1||n.indexOf("언제")!==-1) && (n.indexOf("프로모션")!==-1||n.indexOf("전체")!==-1||n.indexOf("이번")!==-1||n.indexOf("4월")!==-1)){
+    addBot("[답변]\n이번 4월 프로모션 전체 기간:\n\n2026년 4월 1일 ~ 2026년 4월 30일\n\n(전 카드사 동일)");
+    return true;
+  }
+
+  // "신규 고객 기준" / "이용 실적 미보유 기간" (카드사 미지정)
+  if(!matchCard(input) && (n.indexOf("신규")!==-1||n.indexOf("무실적")!==-1||n.indexOf("미보유")!==-1) && (n.indexOf("기준")!==-1||n.indexOf("기간")!==-1||n.indexOf("조건")!==-1||n.indexOf("정의")!==-1)){
+    addBot("[답변]\n신규 고객 기준 (자료 근거):\n\n2025년 10월 ~ 2026년 3월 (6개월) 동안 해당 카드사의 신용카드 청구 및 사용 이력이 없는 고객\n\n※ 카드사별로 세부 표현이 다소 다를 수 있으나, 6개월 무실적 기간은 동일합니다.");
+    return true;
+  }
+
+  // "문서에 ~카드 정보 있어?" (존재 여부 확인) - handleMetaQuestion과 별도
+  if((n.indexOf("문서")!==-1||n.indexOf("자료")!==-1) && (n.indexOf("있")!==-1||n.indexOf("들어")!==-1||n.indexOf("포함")!==-1||n.indexOf("나와")!==-1)){
+    var ck = matchCard(input);
+    if(ck){
+      addBot("[답변]\n네, "+CARDS[ck].name+"에 대한 정보가 문서에 포함되어 있습니다.\n\n상세 정보를 보시려면 해당 카드를 선택해 주세요.");
+      var w = document.createElement("div"); w.className = "subs";
+      var b = document.createElement("button"); b.className = "sq";
+      b.textContent = "▸ "+CARDS[ck].name+" 상세보기";
+      b.onclick = function(){ showCardDetail(ck); }; w.appendChild(b);
+      bd.appendChild(w); scroll();
+      return true;
+    }
+    // 카드사명이 있지만 매칭 안 되는 경우 → 없음
+    // "하나카드" 등 일반 카드 이름이 포함된 경우 체크
+    var mentionedCards = ["비씨","씨티","카카오뱅크","토스","네이버"];
+    for(var i=0;i<mentionedCards.length;i++){
+      if(n.indexOf(mentionedCards[i])!==-1){
+        addBot("[답변]\n아니요, "+mentionedCards[i]+"에 대한 정보는 제공된 자료에 포함되어 있지 않습니다.");
+        return true;
+      }
+    }
+    // "우리 문서에 하나카드" → "우리"가 matchCard에 걸리므로 별도 처리
+    if(n.indexOf("하나카드")!==-1 && n.indexOf("문서")!==-1){
+      // "마이 코웨이 하나카드"는 있지만, "하나카드"라고만 물으면 구분 필요
+      addBot("[답변]\n네, '마이 코웨이 하나카드' 정보가 문서에 있습니다.\n단, 별도 4월 프로모션은 없으며 기본 청구할인만 제공됩니다.\n\n문의: 1588-1771");
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/* ============================================================
+   기간 필터: "N개월인 카드", "60개월 카드" 등
+   ============================================================ */
+function handleDurationFilter(input){
+  var n = input.replace(/\s/g,"").toLowerCase();
+  // "36개월인 카드", "혜택 기간이 60개월", "기간이 N개월"
+  var hasDurFilter = (n.indexOf("개월인")!==-1||n.indexOf("개월인카드")!==-1||(n.indexOf("개월")!==-1&&(n.indexOf("카드는")!==-1||n.indexOf("카드가")!==-1||n.indexOf("무엇")!==-1||n.indexOf("뭐")!==-1||n.indexOf("어떤")!==-1)));
+  if(!hasDurFilter) return false;
+  // 이미 만료/사라짐 관련은 handleExpiryCheck에서 처리
+  if(n.indexOf("사라")!==-1||n.indexOf("만료")!==-1||n.indexOf("쓸모")!==-1) return false;
+
+  var monthMatch = n.match(/(\d+)[\s]*개월/);
+  if(!monthMatch) return false;
+  var targetMonths = parseInt(monthMatch[1]);
+
+  var matched = [];
+  PROMO_CARDS.forEach(function(k){
+    var c = CARDS[k];
+    var dur = parseInt(c.duration) || 0;
+    if(dur === targetMonths) matched.push(c.name);
+  });
+
+  if(matched.length === 0){
+    addBot("[답변]\n프로모션 혜택 기간이 "+targetMonths+"개월인 카드는 없습니다.\n\n현재 프로모션 카드의 혜택 기간: 36개월 또는 60개월");
+  } else {
+    addBot("[답변]\n프로모션 혜택 기간이 "+targetMonths+"개월인 카드:\n\n"+matched.join(", ")+"\n\n(총 "+matched.length+"개)");
+  }
+  return true;
+}
 function handleFactCheck(input){
   var n = input.replace(/\s/g,"").toLowerCase();
   var hasVerify = n.indexOf("사실이")!==-1||n.indexOf("사실인")!==-1||n.indexOf("맞아")!==-1||n.indexOf("맞는")!==-1||n.indexOf("맞나")!==-1||n.indexOf("정말")!==-1||n.indexOf("진짜")!==-1||n.indexOf("아니라면")!==-1||n.indexOf("틀린")!==-1;
@@ -1386,6 +1598,12 @@ function doSend(){
   if(!t) return;
   addUsr(t); inp.value = "";
   setTimeout(function(){
+    // === 최우선: 특정 카드 구체적 수치 질문 (단답형) ===
+    if(handleSpecificQuery(t)) return;
+    // === 공통 질문 (전체 기간, 신규 기준, 문서 존재 여부) ===
+    if(handleCommonQuestion(t)) return;
+    // === 기간 필터 (N개월인 카드) ===
+    if(handleDurationFilter(t)) return;
     // 1. 유도 질문 반박 (사실 검증)
     if(handleFactCheck(t)) return;
     // 2. 메타 질문 (문서에 없는 정보)
@@ -1436,12 +1654,21 @@ function doSend(){
 function resetChat(){
   bd.innerHTML = "";
   addBot(GREETING);
-  addNotice("본 챗봇은 제공된 프로모션 자료만을 근거로 답변합니다. 자료에 없는 내용은 추측하지 않으며, 답변할 수 없는 경우 안내 문구로 응답합니다.");
+  addNotice("제공된 프로모션 자료만을 근거로 답변합니다. 자료에 없는 내용은 추측하지 않습니다.");
   showMainMenu();
 }
 
+var placeholders = ["카드사명을 입력하세요 (예: 신한, 국민)","실적 금액으로 검색 (예: 100만원)","두 카드 비교 (예: 신한 우리 비교)","가성비 좋은 카드는? (예: 가성비)","프로모션 기간은? (예: 기간)"];
+var phIdx = 0;
+function rotatePh(){
+  inp.setAttribute("placeholder", placeholders[phIdx]);
+  phIdx = (phIdx+1) % placeholders.length;
+}
+rotatePh();
+setInterval(rotatePh, 4000);
+
 addBot(GREETING);
-addNotice("본 챗봇은 제공된 프로모션 자료만을 근거로 답변합니다. 자료에 없는 내용은 추측하지 않으며, 답변할 수 없는 경우 안내 문구로 응답합니다.");
+addNotice("제공된 프로모션 자료만을 근거로 답변합니다. 자료에 없는 내용은 추측하지 않습니다.");
 showMainMenu();
 </script>
 </body>
