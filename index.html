@@ -39,10 +39,10 @@ body{font-family:'Netmarble','Pretendard',system-ui,-apple-system,sans-serif;bac
 .copy-btn svg{width:14px;height:14px}
 .bub.bot:hover .copy-btn{opacity:1}
 .copy-btn.copied{color:#0088B8;opacity:1}
-.scroll-btns{position:absolute;right:6px;bottom:70px;display:flex;flex-direction:column;gap:4px;z-index:5}
-.scroll-btn{width:32px;height:32px;border-radius:8px;border:1px solid #B0DDF0;background:#fff;color:#0088B8;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.scroll-btns{position:absolute;right:8px;bottom:120px;display:flex;flex-direction:column;gap:4px;z-index:5}
+.scroll-btn{width:30px;height:30px;border-radius:8px;border:1px solid #B0DDF0;background:rgba(255,255,255,0.9);color:#0088B8;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
 .scroll-btn:hover{background:#E8F5FB;border-color:#0088B8}
-.scroll-btn svg{width:14px;height:14px}
+.scroll-btn svg{width:12px;height:12px}
 .suggest-wrap{margin:8px 0 0 44px;display:flex;flex-direction:column;gap:4px}
 .suggest-label{font-size:11px;color:var(--color-text-tertiary);margin-bottom:2px}
 .cats{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 0 44px}
@@ -371,13 +371,13 @@ var COPY_BTN = '<button class="copy-btn" onclick="copyBub(this)" title="답변 �
 function addBot(text){
   var r = document.createElement("div");
   r.className = "row";
-  r.innerHTML = BOT_AV+'<div class="bub bot">'+highlightNumbers(esc(text))+COPY_BTN+'</div>';
+  r.innerHTML = BOT_AV+'<div class="bub bot">'+highlightNumbers(esc(text))+'</div>';
   bd.appendChild(r); scroll();
 }
 function addBotHtml(html){
   var r = document.createElement("div");
   r.className = "row";
-  r.innerHTML = BOT_AV+'<div class="bub bot" style="padding:10px 14px">'+html+COPY_BTN+'</div>';
+  r.innerHTML = BOT_AV+'<div class="bub bot" style="padding:10px 14px">'+html+'</div>';
   bd.appendChild(r); scroll();
 }
 
