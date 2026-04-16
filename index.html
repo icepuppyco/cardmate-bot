@@ -11,7 +11,7 @@
 @font-face{font-family:'Netmarble';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.1/netmarbleB.woff') format('woff');font-weight:700;font-display:swap}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Netmarble','Pretendard',system-ui,-apple-system,sans-serif;background:#E8EBF0;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:12px}
-.wrap{width:100%;max-width:500px;height:94vh;max-height:820px;display:flex;flex-direction:column;background:#F5F9FB;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.12)}
+.wrap{width:100%;max-width:500px;height:94vh;max-height:820px;display:flex;flex-direction:column;background:#F5F9FB;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.12);position:relative}
 .hdr{background:linear-gradient(135deg,#005F80 0%,#0088B8 50%,#00A8E1 100%);padding:18px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;position:relative;overflow:hidden}
 .hdr::after{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:rgba(255,255,255,0.04);border-radius:50%}
 .hdr-l{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
@@ -31,9 +31,20 @@ body{font-family:'Netmarble','Pretendard',system-ui,-apple-system,sans-serif;bac
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .av{width:34px;height:34px;background:linear-gradient(135deg,#0088B8,#00A8E1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
 .av svg{width:18px;height:18px}
-.bub{max-width:82%;padding:12px 16px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+.bub{max-width:82%;padding:12px 16px;font-size:14.5px;line-height:1.7;white-space:pre-wrap;word-break:break-word;position:relative}
 .bub.bot{background:#fff;color:#1F2937;border-radius:4px 16px 16px 16px;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
 .bub.usr{background:linear-gradient(135deg,#0088B8,#00A8E1);color:#fff;border-radius:16px 16px 4px 16px;box-shadow:0 2px 8px rgba(0,136,184,0.25)}
+.copy-btn{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:6px;border:none;background:transparent;color:#B0BEC5;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;opacity:0}
+.copy-btn:hover{background:#E8F5FB;color:#0088B8}
+.copy-btn svg{width:14px;height:14px}
+.bub.bot:hover .copy-btn{opacity:1}
+.copy-btn.copied{color:#0088B8;opacity:1}
+.scroll-btns{position:absolute;right:6px;bottom:70px;display:flex;flex-direction:column;gap:4px;z-index:5}
+.scroll-btn{width:32px;height:32px;border-radius:8px;border:1px solid #B0DDF0;background:#fff;color:#0088B8;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.scroll-btn:hover{background:#E8F5FB;border-color:#0088B8}
+.scroll-btn svg{width:14px;height:14px}
+.suggest-wrap{margin:8px 0 0 44px;display:flex;flex-direction:column;gap:4px}
+.suggest-label{font-size:11px;color:var(--color-text-tertiary);margin-bottom:2px}
 .cats{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 0 44px}
 .cat{background:#fff;border:1px solid #B0DDF0;border-radius:20px;padding:8px 16px;font-size:13.5px;color:#005F80;cursor:pointer;font-weight:600;font-family:inherit;display:flex;align-items:center;gap:6px;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
 .cat:hover{background:#00A8E1;color:#fff;border-color:#00A8E1;box-shadow:0 3px 12px rgba(0,168,225,0.2);transform:translateY(-1px)}
@@ -45,11 +56,20 @@ body{font-family:'Netmarble','Pretendard',system-ui,-apple-system,sans-serif;bac
 .sq{background:#fff;border:1px solid #C8E6F5;border-radius:11px;padding:10px 14px;font-size:13.5px;color:#0088B8;cursor:pointer;text-align:left;font-weight:500;font-family:inherit;transition:all .2s;line-height:1.4;box-shadow:0 1px 3px rgba(0,0,0,0.03)}
 .sq:hover{background:#E8F5FB;border-color:#0088B8;transform:translateX(3px)}
 .sq:focus{outline:2px solid #0088B8;outline-offset:2px}
-.inp-area{padding:12px 16px 16px;background:#fff;border-top:1px solid #D8EDF5;flex-shrink:0}
+.inp-area{padding:12px 16px 16px;background:#fff;border-top:1px solid #D8EDF5;flex-shrink:0;position:relative}
 .inp-row{display:flex;gap:8px;align-items:center}
 .inp-row input{flex:1;padding:12px 16px;border-radius:12px;border:1px solid #B0DDF0;font-size:14.5px;background:#F7FBFD;color:#1F2937;outline:none;font-family:inherit;transition:all .2s}
 .inp-row input:focus{border-color:#00A8E1;box-shadow:0 0 0 3px rgba(0,168,225,0.1)}
 .inp-row input::placeholder{color:#9CA3AF}
+.ac-dropdown{position:absolute;bottom:100%;left:16px;right:16px;background:#fff;border:1px solid #B0DDF0;border-radius:12px;box-shadow:0 -4px 16px rgba(0,0,0,0.08);max-height:220px;overflow-y:auto;display:none;z-index:10;margin-bottom:4px}
+.ac-dropdown.show{display:block}
+.ac-item{padding:10px 14px;font-size:13px;color:#1F2937;cursor:pointer;border-bottom:1px solid #EDF5FA;display:flex;align-items:center;gap:8px;transition:background .15s}
+.ac-item:last-child{border-bottom:none}
+.ac-item:hover,.ac-item.active{background:#E8F5FB}
+.ac-item .ac-type{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600;flex-shrink:0}
+.ac-item .ac-type.card{background:#E0F4FC;color:#0088B8}
+.ac-item .ac-type.question{background:#FFF8E7;color:#9A7B20}
+.ac-item .ac-match{color:#005F80;font-weight:600}
 .send-btn{width:42px;height:42px;border-radius:12px;border:none;background:#00A8E1;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .send-btn:hover{background:#005F80;transform:scale(1.04)}
 .send-btn:focus{outline:2px solid #00A8E1;outline-offset:2px}
@@ -95,15 +115,30 @@ a:focus{outline:2px solid #0088B8;outline-offset:2px}
       </div>
       <div>
         <div class="hdr-brand">CardMate<span>by coway</span></div>
+        <!-- ============================================================ -->
+        <!-- ★★★ [수정구간1] 헤더 날짜 - 매월 변경 ★★★ -->
+        <!-- ============================================================ -->
         <div class="hdr-sub">상담사 전용 · 2026년 4월 프로모션</div>
+        <!-- ============================================================ -->
+        <!-- ★★★ [수정구간1] 끝 ★★★ -->
+        <!-- ============================================================ -->
       </div>
     </div>
     <button class="hdr-rst" onclick="resetChat()" aria-label="새 상담 시작">새 상담</button>
   </div>
   <div class="body" id="chatBody" role="log" aria-live="polite" aria-label="대화 내용"></div>
+  <div class="scroll-btns">
+    <button class="scroll-btn" onclick="bd.scrollTop=0" aria-label="맨 위로" title="맨 위로">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+    <button class="scroll-btn" onclick="bd.scrollTop=bd.scrollHeight" aria-label="맨 아래로" title="맨 아래로">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </div>
   <div class="inp-area">
+    <div class="ac-dropdown" id="acDropdown"></div>
     <div class="inp-row">
-      <input type="text" id="chatInput" aria-label="질문 입력" onkeydown="if(event.key==='Enter')doSend()">
+      <input type="text" id="chatInput" aria-label="질문 입력" oninput="onAutoComplete()" onkeydown="onInputKeydown(event)" autocomplete="off">
       <button class="send-btn" onclick="doSend()" aria-label="전송">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="12" y1="19" x2="12" y2="5"/>
@@ -116,6 +151,16 @@ a:focus{outline:2px solid #0088B8;outline-offset:2px}
 </div>
 
 <script>
+/* ================================================================ */
+/* ★★★★★ [수정구간2] 프로모션 카드 데이터 - 매월 이 구간만 교체 ★★★★★ */
+/* ================================================================ */
+/*   교체 방법:
+     1. 아래 "var CARDS = {" 부터 "var GREETING = ...;" 까지 전체 선택
+     2. 삭제
+     3. 새 달 데이터를 같은 자리에 붙여넣기
+     4. PROMO_CARDS, NORMAL_CARDS 배열도 필요시 수정
+     5. GREETING 내 문구도 필요시 수정                              */
+/* ================================================================ */
 var CARDS = {
   "shinhan": {
     name: "코웨이 신한카드", icon: "&#128308;", phone: "1833-6013",
@@ -298,6 +343,9 @@ var PROMO_CARDS = ["shinhan","woori","kb","samsung","loca","hyundai","nh"];
 var NORMAL_CARDS = ["ibk","hana","nhallone"];
 var NOT_FOUND_MSG = "제공된 자료 내에서 답변을 찾을 수 없습니다.\n\n아래 카드사를 선택하시거나, 카드사명/금액으로 다시 질문해 주세요.\n\n검색 예시:\n  카드사명: \"신한\", \"우리\", \"국민\"\n  실적별 추천: \"30만원 기준 3개\", \"200만원\"\n  최대 혜택: \"최대 혜택\", \"순위\"\n  전체 비교: \"비교\", \"전체\"";
 var GREETING = "안녕하세요! CardMate입니다.\n\n코웨이 제휴카드 프로모션 자료를 근거로 답변합니다.\n자료에 없는 내용은 안내드리지 않습니다.\n\n아래에서 카드사를 선택하거나 질문을 입력해 주세요.";
+/* ================================================================ */
+/* ★★★★★ [수정구간2] 끝 - 이 아래는 절대 수정하지 마세요 ★★★★★ */
+/* ================================================================ */
 
 var bd = document.getElementById("chatBody");
 var inp = document.getElementById("chatInput");
@@ -318,18 +366,38 @@ function highlightNumbers(text){
     .replace(/(\d{2,}원)/g, hl);
 }
 
+var COPY_BTN = '<button class="copy-btn" onclick="copyBub(this)" title="답변 복사"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>';
+
 function addBot(text){
   var r = document.createElement("div");
   r.className = "row";
-  r.innerHTML = BOT_AV+'<div class="bub bot">'+highlightNumbers(esc(text))+'</div>';
+  r.innerHTML = BOT_AV+'<div class="bub bot">'+highlightNumbers(esc(text))+COPY_BTN+'</div>';
   bd.appendChild(r); scroll();
 }
 function addBotHtml(html){
   var r = document.createElement("div");
   r.className = "row";
-  r.innerHTML = BOT_AV+'<div class="bub bot" style="padding:10px 14px">'+html+'</div>';
+  r.innerHTML = BOT_AV+'<div class="bub bot" style="padding:10px 14px">'+html+COPY_BTN+'</div>';
   bd.appendChild(r); scroll();
 }
+
+/* 답변 복사 */
+function copyBub(btn){
+  var bub = btn.closest(".bub");
+  var text = bub.textContent.trim();
+  navigator.clipboard.writeText(text).then(function(){
+    btn.classList.add("copied");
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    setTimeout(function(){
+      btn.classList.remove("copied");
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+    }, 1500);
+  });
+}
+
+/* 이전 질문 되돌리기 */
+var queryHistory = [];
+var historyIdx = -1;
 
 /* 타이핑 인디케이터 */
 function showTyping(){
@@ -1921,7 +1989,10 @@ function handleSplitOptimization(input){
 function doSend(){
   var t = inp.value.trim();
   if(!t) return;
+  queryHistory.push(t);
+  historyIdx = queryHistory.length;
   addUsr(t); inp.value = "";
+  acDrop.classList.remove("show"); acDrop.innerHTML = "";
   showTyping();
   setTimeout(function(){
     hideTyping();
@@ -1980,10 +2051,52 @@ function doSend(){
     // 20. 단일 카드 매칭
     var ck = matchCard(t);
     if(ck){ showCardDetail(ck); return; }
-    // 21. 답변 불가
+    // 21. 답변 불가 + 유사 질문 제안
     addBot(NOT_FOUND_MSG);
+    showSuggestions(t);
     showMainMenu();
   }, 300);
+}
+
+/* ============================================================
+   유사 질문 제안 (답변 불가 시)
+   ============================================================ */
+function showSuggestions(input){
+  var v = input.replace(/\s/g,"").toLowerCase();
+  var results = [];
+  AC_QUESTIONS.forEach(function(q){
+    var score = 0;
+    q.kw.forEach(function(k){ if(v.indexOf(k)!==-1) score += 3; });
+    if(q.text.toLowerCase().replace(/\s/g,"").indexOf(v)!==-1) score += 2;
+    v.split("").forEach(function(ch){ q.kw.forEach(function(k){ if(k.indexOf(ch)!==-1) score += 0.3; }); });
+    if(score >= 2) results.push({text:q.text, score:score});
+  });
+  AC_CARDS.forEach(function(c){
+    if(c.text.toLowerCase().indexOf(v)!==-1 || v.split("").some(function(ch){ return c.text.toLowerCase().indexOf(ch)!==-1 && v.length >= 1; })){
+      if(c.text.toLowerCase().indexOf(v)!==-1) results.push({text:c.text+" 상세보기", score:3});
+    }
+  });
+  results.sort(function(a,b){ return b.score - a.score; });
+  results = results.slice(0, 3);
+  if(results.length === 0) return;
+
+  var w = document.createElement("div");
+  w.className = "suggest-wrap";
+  var lbl = document.createElement("div");
+  lbl.className = "suggest-label";
+  lbl.textContent = "혹시 이런 질문이셨나요?";
+  w.appendChild(lbl);
+  results.forEach(function(r){
+    var b = document.createElement("button");
+    b.className = "sq";
+    b.textContent = "▸ " + r.text;
+    b.onclick = function(){
+      inp.value = r.text.replace(" 상세보기","");
+      doSend();
+    };
+    w.appendChild(b);
+  });
+  bd.appendChild(w); scroll();
 }
 
 function resetChat(){
@@ -1992,6 +2105,152 @@ function resetChat(){
   addNotice("제공된 프로모션 자료만을 근거로 답변합니다. 자료에 없는 내용은 추측하지 않습니다.");
   showMainMenu();
 }
+
+/* ============================================================
+   자동완성 시스템
+   ============================================================ */
+var AC_CARDS = [
+  {text:"신한카드", type:"card"}, {text:"우리카드", type:"card"}, {text:"KB국민카드", type:"card"},
+  {text:"삼성카드", type:"card"}, {text:"롯데카드 (LOCA)", type:"card"}, {text:"현대카드", type:"card"},
+  {text:"NH농협카드", type:"card"}, {text:"IBK카드", type:"card"}, {text:"하나카드", type:"card"},
+  {text:"NH올원카드", type:"card"}
+];
+var AC_QUESTIONS = [
+  {text:"이번 4월 프로모션 전체 기간은?", kw:["기간","4월","프로모션","언제"]},
+  {text:"신규 고객 기준이 뭐야?", kw:["신규","기준","대상","자격"]},
+  {text:"30만원 실적 기준 혜택 순위", kw:["30","만원","실적","순위","혜택"]},
+  {text:"100만원 실적 기준 추천", kw:["100","만원","실적","추천"]},
+  {text:"200만원 실적 기준 추천", kw:["200","만원","실적","추천"]},
+  {text:"최대 혜택 순위 알려줘", kw:["최대","혜택","순위","가장"]},
+  {text:"전체 카드 비교", kw:["전체","비교","목록"]},
+  {text:"프로모션 혜택 기간이 36개월인 카드는?", kw:["36","개월","기간","카드"]},
+  {text:"60개월 추가 할인 카드 리스트", kw:["60","개월","할인","리스트","카드"]},
+  {text:"가성비 좋은 카드 순위", kw:["가성비","효율","순위"]},
+  {text:"청구할인 카드 중 혜택 순위", kw:["청구할인","중","순위","혜택"]},
+  {text:"캐시백 카드는 어떤 거야?", kw:["캐시백","카드","어떤"]},
+  {text:"신한카드와 우리카드 비교", kw:["신한","우리","비교"]},
+  {text:"총 혜택 2만원 이상인 카드 나열", kw:["총","혜택","2만","이상","나열"]},
+  {text:"신한카드 30만원 기본 할인액은?", kw:["신한","30","기본","할인"]},
+  {text:"KB국민카드 최소 전월 실적 조건은?", kw:["국민","kb","최소","실적","조건"]},
+  {text:"현대카드 프로모션 추가 할인액은?", kw:["현대","프로모션","추가","할인"]},
+  {text:"삼성카드 30만원 총 혜택은?", kw:["삼성","30","총","혜택"]},
+  {text:"렌탈료 면제 프로모션 관련 안내", kw:["면제","렌탈료","프로모션"]},
+  {text:"가족카드도 적용 가능한가요?", kw:["가족","카드","적용","가능"]},
+  {text:"자동이체 필수 조건 안내", kw:["자동이체","자동납부","필수"]}
+];
+
+var acDrop = document.getElementById("acDropdown");
+var acIdx = -1;
+
+function onAutoComplete(){
+  var v = inp.value.trim().toLowerCase();
+  acIdx = -1;
+  if(v.length < 1){ acDrop.classList.remove("show"); acDrop.innerHTML=""; return; }
+
+  var results = [];
+
+  AC_CARDS.forEach(function(c){
+    if(c.text.toLowerCase().indexOf(v)!==-1 || v.split("").some(function(ch){ return c.text.toLowerCase().indexOf(ch)!==-1; })){
+      var matchScore = c.text.toLowerCase().indexOf(v) === 0 ? 2 : 1;
+      if(c.text.toLowerCase().indexOf(v)!==-1) results.push({text:c.text, type:"card", score:matchScore+1});
+    }
+  });
+
+  AC_QUESTIONS.forEach(function(q){
+    var score = 0;
+    q.kw.forEach(function(k){ if(v.indexOf(k)!==-1) score += 2; });
+    if(q.text.toLowerCase().indexOf(v)!==-1) score += 3;
+    v.split("").forEach(function(ch){ if(q.text.toLowerCase().indexOf(ch)!==-1) score += 0.1; });
+    if(score >= 1) results.push({text:q.text, type:"question", score:score});
+  });
+
+  results.sort(function(a,b){ return b.score - a.score; });
+  results = results.slice(0, 6);
+
+  if(results.length === 0){ acDrop.classList.remove("show"); acDrop.innerHTML=""; return; }
+
+  var html = "";
+  results.forEach(function(r, i){
+    var typeLabel = r.type === "card" ? '<span class="ac-type card">카드</span>' : '<span class="ac-type question">질문</span>';
+    var displayText = r.text.replace(new RegExp("("+v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+")","gi"), '<span class="ac-match">$1</span>');
+    html += '<div class="ac-item" data-idx="'+i+'" onmousedown="selectAc('+i+')">'+typeLabel+'<span>'+displayText+'</span></div>';
+  });
+  acDrop.innerHTML = html;
+  acDrop.classList.add("show");
+  window._acResults = results;
+}
+
+function selectAc(idx){
+  var results = window._acResults;
+  if(!results || !results[idx]) return;
+  var item = results[idx];
+  if(item.type === "card"){
+    inp.value = item.text.replace(" (LOCA)","");
+  } else {
+    inp.value = item.text;
+  }
+  acDrop.classList.remove("show");
+  acDrop.innerHTML = "";
+  inp.focus();
+}
+
+function onInputKeydown(e){
+  var items = acDrop.querySelectorAll(".ac-item");
+  if(acDrop.classList.contains("show") && items.length > 0){
+    if(e.key === "ArrowDown"){
+      e.preventDefault();
+      acIdx = Math.min(acIdx + 1, items.length - 1);
+      updateAcHighlight(items);
+      return;
+    }
+    if(e.key === "ArrowUp"){
+      e.preventDefault();
+      acIdx = Math.max(acIdx - 1, 0);
+      updateAcHighlight(items);
+      return;
+    }
+    if(e.key === "Enter" && acIdx >= 0){
+      e.preventDefault();
+      selectAc(acIdx);
+      return;
+    }
+    if(e.key === "Escape"){
+      acDrop.classList.remove("show");
+      acDrop.innerHTML = "";
+      acIdx = -1;
+      return;
+    }
+  }
+  // 자동완성이 안 열린 상태에서 위쪽 화살표 → 이전 질문
+  if(e.key === "ArrowUp" && !acDrop.classList.contains("show") && queryHistory.length > 0){
+    e.preventDefault();
+    if(historyIdx > 0) historyIdx--;
+    inp.value = queryHistory[historyIdx] || "";
+    return;
+  }
+  if(e.key === "ArrowDown" && !acDrop.classList.contains("show") && queryHistory.length > 0){
+    e.preventDefault();
+    if(historyIdx < queryHistory.length - 1) historyIdx++;
+    else { historyIdx = queryHistory.length; inp.value = ""; return; }
+    inp.value = queryHistory[historyIdx] || "";
+    return;
+  }
+  if(e.key === "Enter") doSend();
+}
+
+function updateAcHighlight(items){
+  items.forEach(function(el, i){
+    if(i === acIdx) el.classList.add("active");
+    else el.classList.remove("active");
+  });
+}
+
+document.addEventListener("click", function(e){
+  if(!e.target.closest(".inp-area")){
+    acDrop.classList.remove("show");
+    acDrop.innerHTML = "";
+  }
+});
 
 var placeholders = ["카드사명을 입력하세요 (예: 신한, 국민)","실적 금액으로 검색 (예: 100만원)","두 카드 비교 (예: 신한 우리 비교)","가성비 좋은 카드는? (예: 가성비)","프로모션 기간은? (예: 기간)"];
 var phIdx = 0;
